@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0f16" />
+    <meta
+      name="description"
+      content="SGPF DJ HALLI CHURCH — service times, events, sermons, and contact information."
+    />
+    <title>SGPF DJ HALLI CHURCH</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-elevate>
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="SGPF DJ HALLI CHURCH home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">
+            <span class="brand-name">SGPF</span>
+            <span class="brand-sub">DJ HALLI CHURCH</span>
+          </span>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu">
+            <span class="sr-only">Open menu</span>
+            <span class="nav-toggle-bars" aria-hidden="true"></span>
+          </button>
+
+          <div class="nav-menu" id="navMenu">
+            <a href="#about">About</a>
+            <a href="#services">Service Times</a>
+            <a href="#events">Events</a>
+            <a href="#sermons">Sermons</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#giving">Giving</a>
+            <a href="#contact" class="nav-cta">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Welcome</p>
+            <h1>SGPF DJ HALLI CHURCH</h1>
+            <p class="lead">
+              A place to worship, grow, and serve. Join us this week for a simple, spirit-led time
+              together.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#services">See service times</a>
+              <a class="btn btn-ghost" href="#contact">Plan a visit</a>
+            </div>
+
+            <div class="quick-info">
+              <div class="quick-card">
+                <div class="quick-k">Sunday</div>
+                <div class="quick-v" data-service="sundayTime">10:00 AM</div>
+                <div class="quick-s">Worship Service</div>
+              </div>
+              <div class="quick-card">
+                <div class="quick-k">Wednesday</div>
+                <div class="quick-v" data-service="midweekTime">7:00 PM</div>
+                <div class="quick-s">Prayer Meeting</div>
+              </div>
+              <div class="quick-card">
+                <div class="quick-k">Location</div>
+                <div class="quick-v">DJ Halli</div>
+                <div class="quick-s">Bengaluru</div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-panel" aria-label="This week">
+            <div class="panel-top">
+              <p class="panel-title">This week</p>
+              <p class="panel-sub">Latest announcement</p>
+            </div>
+            <div class="panel-body">
+              <p class="panel-verse" id="verseText">
+                “Let all that you do be done in love.”
+              </p>
+              <p class="panel-ref" id="verseRef">— 1 Corinthians 16:14</p>
+
+              <div class="panel-divider" role="separator" aria-hidden="true"></div>
+
+              <ul class="panel-list" id="highlightsList">
+                <li><strong>New here?</strong> Say hello after service.</li>
+                <li><strong>Prayer requests:</strong> Share them anytime.</li>
+                <li><strong>Serving:</strong> Join a ministry team.</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>About the church</h2>
+            <p class="muted">
+              A simple overview you can customize anytime. Replace the text with your church’s
+              exact details.
+            </p>
+          </div>
+
+          <div class="cards-3">
+            <article class="card">
+              <h3>Our vision</h3>
+              <p>
+                To love God, love people, and build lives through the Word, prayer, and fellowship.
+              </p>
+            </article>
+            <article class="card">
+              <h3>What to expect</h3>
+              <p>
+                Warm welcome, worship, Scripture-based message, and prayer. Families and first-time
+                visitors are always welcome.
+              </p>
+            </article>
+            <article class="card">
+              <h3>For families</h3>
+              <p>
+                A safe, respectful environment. Ask us about children’s ministry and youth
+                gatherings.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="section section-alt">
+        <div class="container">
+          <div class="section-head">
+            <h2>Service times</h2>
+            <p class="muted">Keep these updated so new visitors can plan easily.</p>
+          </div>
+
+          <div class="cards-2">
+            <article class="card card-accent">
+              <h3>Sunday Worship Service</h3>
+              <dl class="dl">
+                <div>
+                  <dt>Time</dt>
+                  <dd><span data-service="sundayTime">10:00 AM</span></dd>
+                </div>
+                <div>
+                  <dt>Location</dt>
+                  <dd><span data-contact="addressShort">DJ Halli, Bengaluru</span></dd>
+                </div>
+                <div>
+                  <dt>Notes</dt>
+                  <dd>Arrive 10 minutes early if it’s your first time.</dd>
+                </div>
+              </dl>
+              <div class="card-actions">
+                <a class="btn btn-primary" href="#contact">Get directions</a>
+                <a class="btn btn-ghost" href="#sermons">Watch sermons</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <h3>Midweek Prayer Meeting</h3>
+              <dl class="dl">
+                <div>
+                  <dt>Day</dt>
+                  <dd>Wednesday</dd>
+                </div>
+                <div>
+                  <dt>Time</dt>
+                  <dd><span data-service="midweekTime">7:00 PM</span></dd>
+                </div>
+                <div>
+                  <dt>Focus</dt>
+                  <dd>Prayer, worship, and encouragement.</dd>
+                </div>
+              </dl>
+              <p class="muted small">
+                Want to add more meetings? You can duplicate this card.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="events" class="section">
+        <div class="container">
+          <div class="section-head section-head-row">
+            <div>
+              <h2>Upcoming events</h2>
+              <p class="muted">A clean list that works well on mobile.</p>
+            </div>
+            <div class="section-actions">
+              <button class="btn btn-ghost" type="button" id="downloadCalendarBtn">
+                Download calendar (.ics)
+              </button>
+            </div>
+          </div>
+
+          <div class="events" id="eventsList" aria-live="polite"></div>
+          <p class="muted small">
+            Tip: Edit events in <code>data/site-data.js</code>.
+          </p>
+        </div>
+      </section>
+
+      <section id="sermons" class="section section-alt">
+        <div class="container">
+          <div class="section-head">
+            <h2>Sermons</h2>
+            <p class="muted">
+              Add YouTube links and short titles. Visitors can watch without leaving the page.
+            </p>
+          </div>
+
+          <div class="sermons" id="sermonsGrid"></div>
+          <p class="muted small">
+            Tip: Edit sermons in <code>data/site-data.js</code>.
+          </p>
+        </div>
+      </section>
+
+      <section id="gallery" class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>Gallery</h2>
+            <p class="muted">
+              Add a few photos to show your community. Use high quality images for best results.
+            </p>
+          </div>
+
+          <div class="gallery" id="galleryGrid"></div>
+          <p class="muted small">
+            Tip: Put images in <code>assets/gallery/</code> and list them in
+            <code>data/site-data.js</code>.
+          </p>
+        </div>
+      </section>
+
+      <section id="giving" class="section section-alt">
+        <div class="container">
+          <div class="section-head">
+            <h2>Giving</h2>
+            <p class="muted">
+              If you have a UPI / bank / QR code, add it here. Keep it simple and trustworthy.
+            </p>
+          </div>
+
+          <div class="cards-2">
+            <article class="card">
+              <h3>UPI / QR</h3>
+              <p class="muted">
+                Add your QR image at <code>assets/giving-qr.png</code> (or update the path below).
+              </p>
+              <div class="qr-wrap">
+                <img
+                  src="./assets/giving-qr-placeholder.svg"
+                  alt="Giving QR code placeholder"
+                  loading="lazy"
+                  width="420"
+                  height="420"
+                />
+              </div>
+              <p class="muted small">
+                Replace this placeholder with your real QR code image when ready.
+              </p>
+            </article>
+            <article class="card card-accent">
+              <h3>Other ways to give</h3>
+              <ul class="list">
+                <li>Give in person during the service.</li>
+                <li>Contact the church office for bank details.</li>
+                <li>Support missions and outreach programs.</li>
+              </ul>
+              <div class="card-actions">
+                <a class="btn btn-primary" href="#contact">Ask for details</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>Contact</h2>
+            <p class="muted">
+              Send a message, ask for prayer, or request directions. This form uses email as a
+              fallback (no server needed).
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="card">
+              <h3>Church details</h3>
+              <dl class="dl">
+                <div>
+                  <dt>Phone</dt>
+                  <dd><a href="#" id="phoneLink" data-contact="phone">+91 00000 00000</a></dd>
+                </div>
+                <div>
+                  <dt>Email</dt>
+                  <dd><a href="#" id="emailLink" data-contact="email">info@example.com</a></dd>
+                </div>
+                <div>
+                  <dt>Address</dt>
+                  <dd>
+                    <span data-contact="addressFull"
+                      >SGPF DJ Halli Church, DJ Halli, Bengaluru, Karnataka</span
+                    >
+                  </dd>
+                </div>
+              </dl>
+
+              <div class="card-actions">
+                <a class="btn btn-ghost" href="#" id="mapsLink">Open in Google Maps</a>
+              </div>
+
+              <p class="muted small">
+                Update your contact info in <code>data/site-data.js</code>.
+              </p>
+            </div>
+
+            <form class="card form" id="contactForm" novalidate>
+              <h3>Send a message</h3>
+
+              <div class="form-row">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" autocomplete="name" required />
+                <p class="field-hint" data-error-for="name" hidden>Please enter your name.</p>
+              </div>
+
+              <div class="form-row">
+                <label for="phone">Phone (optional)</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" />
+              </div>
+
+              <div class="form-row">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <p class="field-hint" data-error-for="message" hidden>Please enter a message.</p>
+              </div>
+
+              <div class="form-row form-row-inline">
+                <label class="checkbox">
+                  <input id="prayer" name="prayer" type="checkbox" />
+                  <span>Prayer request</span>
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <button class="btn btn-primary" type="submit">Send</button>
+                <p class="muted small" id="formStatus" role="status" aria-live="polite"></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <p class="footer-brand">SGPF DJ HALLI CHURCH</p>
+          <p class="muted small">
+            Built with a clean black/white base and a minimal blue gradient accent.
+          </p>
+        </div>
+
+        <div>
+          <p class="footer-title">Quick links</p>
+          <ul class="footer-links">
+            <li><a href="#services">Service Times</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#sermons">Sermons</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-title">Social</p>
+          <ul class="footer-links" id="socialLinks"></ul>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p class="muted small">
+          © <span id="year"></span> SGPF DJ HALLI CHURCH. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script src="./data/site-data.js"></script>
+    <script src="./script.js" defer></script>
+  </body>
+</html>
