@@ -1,11 +1,40 @@
-/* global SGPF_SITE */
+/* SGPF DJ HALLI CHURCH — Main Script */
 (() => {
   const site = window.SGPF_SITE || {};
 
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-  // Header elevation on scroll
+  // ── Lenis Smooth Scroll ─────────────────────────────────────
+  if (typeof Lenis !== 'undefined') {
+    const lenis = new Lenis({
+      duration: 1.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 0.9,
+      smoothTouch: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Handle anchor links with Lenis
+    $$('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          lenis.scrollTo(target, { offset: -80 });
+        }
+      });
+    });
+  }
+
+  // ── Header elevation on scroll ──────────────────────────────
   const header = $(".site-header");
   const setHeaderElevated = () => {
     if (!header) return;
@@ -14,7 +43,33 @@
   setHeaderElevated();
   window.addEventListener("scroll", setHeaderElevated, { passive: true });
 
-  // Mobile menu
+  // ── Scroll Reveal Animation ─────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+  $$('.reveal').forEach(el => observer.observe(el));
+
+  // ── Footer huge text trigger ────────────────────────────────
+  const footerHuge = $('#footerHuge');
+  if (footerHuge) {
+    const footerIo = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          footerHuge.classList.add('active');
+          footerIo.unobserve(footerHuge);
+        }
+      });
+    }, { threshold: 0.1 });
+    footerIo.observe(footerHuge);
+  }
+
+  // ── Mobile menu ─────────────────────────────────────────────
   const navToggle = $(".nav-toggle");
   const navMenu = $("#navMenu");
   const closeMenu = () => {
@@ -47,22 +102,15 @@
     });
 
     $$("#navMenu a").forEach((a) =>
-      a.addEventListener("click", () => {
-        closeMenu();
-      }),
+      a.addEventListener("click", () => closeMenu()),
     );
   }
 
-  // Set year
+  // ── Set year ────────────────────────────────────────────────
   const year = $("#year");
   if (year) year.textContent = String(new Date().getFullYear());
 
-  // Fill service times
-  const serviceTimes = site.serviceTimes || {};
-  $$("[data-service='sundayTime']").forEach((el) => (el.textContent = serviceTimes.sunday || "10:00 AM"));
-  $$("[data-service='midweekTime']").forEach((el) => (el.textContent = serviceTimes.midweek || "7:00 PM"));
-
-  // Fill contact links
+  // ── Fill contact links ──────────────────────────────────────
   const contact = site.contact || {};
   const phoneLink = $("#phoneLink");
   if (phoneLink) {
@@ -82,23 +130,24 @@
   $$("[data-contact='addressShort']").forEach((el) => (el.textContent = contact.addressShort || "DJ Halli, Bengaluru"));
   $$("[data-contact='addressFull']").forEach(
     (el) =>
-      (el.textContent =
-        contact.addressFull || "SGPF DJ Halli Church, DJ Halli, Bengaluru, Karnataka"),
+    (el.textContent =
+      contact.addressFull || "SGPF DJ Halli Church, DJ Halli, Bengaluru, Karnataka"),
   );
 
   const mapsLink = $("#mapsLink");
   if (mapsLink) {
-    const q = encodeURIComponent(contact.mapsQuery || contact.addressFull || "DJ Halli, Bengaluru");
-    mapsLink.setAttribute("href", `https://www.google.com/maps/search/?api=1&query=${q}`);
+    const url = contact.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.mapsQuery || contact.addressFull || "DJ Halli, Bengaluru")}`;
+    mapsLink.setAttribute("href", url);
     mapsLink.setAttribute("target", "_blank");
     mapsLink.setAttribute("rel", "noreferrer");
   }
 
-  // Social links
-  const socialLinks = $("#socialLinks");
-  if (socialLinks) {
-    const social = Array.isArray(site.social) ? site.social : [];
-    socialLinks.innerHTML = "";
+  // ── Social links ────────────────────────────────────────────
+  const socialContainers = $$('#socialLinks, #socialLinks2');
+  const social = Array.isArray(site.social) ? site.social : [];
+  socialContainers.forEach(container => {
+    if (!container) return;
+    container.innerHTML = "";
     social.forEach((s) => {
       if (!s?.href || !s?.label) return;
       const li = document.createElement("li");
@@ -108,11 +157,11 @@
       a.target = "_blank";
       a.rel = "noreferrer";
       li.appendChild(a);
-      socialLinks.appendChild(li);
+      container.appendChild(li);
     });
-  }
+  });
 
-  // Events
+  // ── Events ──────────────────────────────────────────────────
   const eventsList = $("#eventsList");
   const events = Array.isArray(site.events) ? site.events : [];
   if (eventsList) {
@@ -167,7 +216,7 @@
     }
   }
 
-  // Download all events calendar
+  // ── Download all events calendar ────────────────────────────
   const downloadCalendarBtn = $("#downloadCalendarBtn");
   if (downloadCalendarBtn) {
     downloadCalendarBtn.addEventListener("click", () => {
@@ -175,59 +224,79 @@
     });
   }
 
-  // Sermons
+  // ── Sermons ─────────────────────────────────────────────────
   const sermonsGrid = $("#sermonsGrid");
   const sermons = Array.isArray(site.sermons) ? site.sermons : [];
+  const instagramReelsUrl = site.instagramReelsUrl || "";
+  const instagramHandle = site.instagramHandle || "sgpf_church";
+
   if (sermonsGrid) {
     sermonsGrid.innerHTML = "";
-    if (sermons.length === 0) {
+
+    if (instagramReelsUrl) {
+      const reelsCard = document.createElement("article");
+      reelsCard.className = "card sermon sermon-reels";
+      reelsCard.innerHTML = `
+        <div class="sermon-reels-inner">
+          <div class="sermon-reels-icon" aria-hidden="true"></div>
+          <div>
+            <p class="sermon-title">Sermons &amp; highlights on Instagram Reels</p>
+            <p class="sermon-sub">Watch short messages, worship, and updates from our church.</p>
+            <a href="${escapeHtml(instagramReelsUrl)}" class="btn btn-primary" target="_blank" rel="noreferrer">Watch on Instagram @${escapeHtml(instagramHandle)}</a>
+          </div>
+        </div>
+      `;
+      sermonsGrid.appendChild(reelsCard);
+    }
+
+    sermons.forEach((s) => {
+      const id = youtubeIdFromUrl(s.youtubeUrl || "");
+      const card = document.createElement("article");
+      card.className = "card sermon";
+
+      const ratio = document.createElement("div");
+      ratio.className = "ratio";
+
+      if (id) {
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube-nocookie.com/embed/${id}`;
+        iframe.title = s.title ? `Sermon: ${s.title}` : "Sermon video";
+        iframe.loading = "lazy";
+        iframe.allow =
+          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.allowFullscreen = true;
+        ratio.appendChild(iframe);
+      } else {
+        ratio.style.display = "grid";
+        ratio.style.placeItems = "center";
+        ratio.style.color = "white";
+        ratio.textContent = "Add a valid YouTube link";
+      }
+
+      const title = document.createElement("p");
+      title.className = "sermon-title";
+      title.textContent = s.title || "Sermon";
+
+      const sub = document.createElement("p");
+      sub.className = "sermon-sub";
+      sub.textContent = [s.speaker, s.date].filter(Boolean).join(" • ");
+
+      card.appendChild(ratio);
+      card.appendChild(title);
+      card.appendChild(sub);
+      sermonsGrid.appendChild(card);
+    });
+
+    if (!instagramReelsUrl && sermons.length === 0) {
       const empty = document.createElement("div");
       empty.className = "card";
-      empty.innerHTML = `<h3>No sermons added yet</h3><p class="muted">Update <code>data/site-data.js</code> to add YouTube links.</p>`;
+      empty.innerHTML = `<h3>No sermons added yet</h3><p class="muted">Add <code>instagramReelsUrl</code> or YouTube links in <code>data/site-data.js</code>.</p>`;
       sermonsGrid.appendChild(empty);
-    } else {
-      sermons.forEach((s) => {
-        const id = youtubeIdFromUrl(s.youtubeUrl || "");
-        const card = document.createElement("article");
-        card.className = "card sermon";
-
-        const ratio = document.createElement("div");
-        ratio.className = "ratio";
-
-        if (id) {
-          const iframe = document.createElement("iframe");
-          iframe.src = `https://www.youtube-nocookie.com/embed/${id}`;
-          iframe.title = s.title ? `Sermon: ${s.title}` : "Sermon video";
-          iframe.loading = "lazy";
-          iframe.allow =
-            "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-          iframe.referrerPolicy = "strict-origin-when-cross-origin";
-          iframe.allowFullscreen = true;
-          ratio.appendChild(iframe);
-        } else {
-          ratio.style.display = "grid";
-          ratio.style.placeItems = "center";
-          ratio.style.color = "white";
-          ratio.textContent = "Add a valid YouTube link";
-        }
-
-        const title = document.createElement("p");
-        title.className = "sermon-title";
-        title.textContent = s.title || "Sermon";
-
-        const sub = document.createElement("p");
-        sub.className = "sermon-sub";
-        sub.textContent = [s.speaker, s.date].filter(Boolean).join(" • ");
-
-        card.appendChild(ratio);
-        card.appendChild(title);
-        card.appendChild(sub);
-        sermonsGrid.appendChild(card);
-      });
     }
   }
 
-  // Gallery
+  // ── Gallery ─────────────────────────────────────────────────
   const galleryGrid = $("#galleryGrid");
   const gallery = Array.isArray(site.gallery) ? site.gallery : [];
   if (galleryGrid) {
@@ -251,7 +320,7 @@
     }
   }
 
-  // Contact form (mailto fallback)
+  // ── Contact form (mailto fallback) ──────────────────────────
   const form = $("#contactForm");
   const status = $("#formStatus");
   if (form) {
@@ -289,7 +358,8 @@
     });
   }
 
-  // Helpers
+  // ═══════ HELPERS ═══════
+
   function validateRequired(fieldId, ok) {
     const hint = $(`[data-error-for='${fieldId}']`);
     const input = $(`#${fieldId}`);
@@ -329,7 +399,6 @@
   }
 
   function formatEventDate(dateStr, timeStr) {
-    // dateStr: YYYY-MM-DD
     const d = safeDateFromYmd(dateStr);
     const time = String(timeStr || "").trim();
     const locale = navigator.language || "en-IN";
@@ -389,7 +458,6 @@
   }
 
   function toIcsDateFloating(dateObj, timeStr) {
-    // Floating local time: YYYYMMDDTHHMMSS
     const hhmm = parseTimeTo24h(timeStr);
     const y = dateObj.getFullYear();
     const m = pad2(dateObj.getMonth() + 1);
@@ -410,7 +478,6 @@
   }
 
   function parseTimeTo24h(timeStr) {
-    // supports "7:00 PM", "10:00 AM", "18:30"
     const s = String(timeStr || "").trim();
     if (!s) return null;
     let m = s.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
@@ -451,4 +518,3 @@
     URL.revokeObjectURL(url);
   }
 })();
-

@@ -10,6 +10,7 @@ window.SGPF_SITE = {
     addressShort: "DJ Halli, Bengaluru",
     addressFull: "SGPF DJ Halli Church, DJ Halli, Bengaluru, Karnataka",
     mapsQuery: "SGPF DJ Halli Church, DJ Halli, Bengaluru",
+    mapsUrl: "https://maps.app.goo.gl/hQnhJXpahUEw78Ed9",
   },
 
   serviceTimes: {
@@ -18,10 +19,14 @@ window.SGPF_SITE = {
   },
 
   social: [
-    { label: "YouTube", href: "https://youtube.com/" },
-    { label: "Instagram", href: "https://instagram.com/" },
-    { label: "Facebook", href: "https://facebook.com/" },
+    { label: "Instagram", href: "https://www.instagram.com/sgpf_church/" },
+    { label: "YouTube", href: "https://www.youtube.com/@sgpfdjhallibangalore5636" },
+    { label: "WhatsApp Channel", href: "https://whatsapp.com/channel/0029VaVKst3KwqSZPg9R612U" },
+    { label: "Facebook", href: "https://www.facebook.com/share/eoRsD8c9wRHyBAFm/" },
   ],
+
+  instagramReelsUrl: "https://www.instagram.com/sgpf_church/reels/",
+  instagramHandle: "sgpf_church",
 
   events: [
     {
@@ -47,26 +52,7 @@ window.SGPF_SITE = {
     },
   ],
 
-  sermons: [
-    {
-      title: "Faith for Today",
-      speaker: "Pastor",
-      date: "2026-02-09",
-      youtubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    },
-    {
-      title: "Prayer that Changes Things",
-      speaker: "Pastor",
-      date: "2026-02-02",
-      youtubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    },
-    {
-      title: "Walking in Love",
-      speaker: "Pastor",
-      date: "2026-01-26",
-      youtubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    },
-  ],
+  sermons: [],
 
   gallery: [
     { src: "./assets/gallery/sample-1.svg", alt: "Church gathering photo placeholder" },
