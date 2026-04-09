@@ -18,6 +18,13 @@
   <link rel="icon" href="./assets/logo-compact.png" type="image/png" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="stylesheet" href="./styles.css" />
+  <script>
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+  </script>
 </head>
 
 <body>
@@ -46,11 +53,40 @@
           <a href="#giving">Giving</a>
           <a href="#contact" class="nav-cta">Contact</a>
         </div>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <svg id="moonIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg id="sunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
       </nav>
     </div>
   </header>
 
   <main id="main">
+
+    <!-- ═══════ WEEKLY SCHEDULE POSTER ═══════ -->
+    <section id="announcement" class="section-poster reveal">
+      <div class="container poster-wrapper">
+        <div class="poster-card">
+          <img src="./assets/poster.jpg" alt="Church Weekly Schedule" class="poster-img" />
+          <div class="poster-overlay"></div>
+        </div>
+        <div class="poster-hint">
+          <span>Official Weekly Schedule</span>
+        </div>
+      </div>
+    </section>
 
     <!-- ═══════ HERO ═══════ -->
     <section id="top" class="hero">
@@ -109,36 +145,26 @@
           <span class="eyebrow">Our Story</span>
           <h2>About our church</h2>
           <p class="muted">
-            Established in 1991, ours is a story of faith, vision, and miracles.
-            From a small garage meeting to a thriving community of over 700 believers.
+            Shekinah Gospel Prayer Fellowship, Deverajeevanahalli Branch was born on September 27, 1992.
+            We are a Bible-believing, Spirit-filled church dedicated to serving God and our community.
           </p>
         </div>
 
         <article class="card history-card reveal delay-1">
-          <h3>Our history</h3>
+          <h3>Our history &amp; Calling</h3>
           <div class="history-body">
             <p>
-              <strong>Established in 1991.</strong> In the beginning it was a garage—an
-              Ambassador car, a fridge, and a small cell meeting. The owner of the property,
-              Uncle Edward, had received a vision from God: this place would become a house of
-              worship where many would gather. At the same time, in another location, God spoke
-              to Pastor Deena Dayalan to start the church right here. Edward's vision became
-              mission.
+              <strong>Shekinah Gospel Prayer Fellowship, Deverajeevanahalli Branch</strong> is a body of Christ with a
+              divinely called ministry. Shekinah, D.J.Halli Branch was born on September 27, 1992 as per the leading of
+              Lord Jesus Christ. It is a bible believing, Spirit filled Church with fruits and gifts operating.
             </p>
             <p>
-              Uncle Edward resigned from his job. The cell meeting turned into a church, with
-              just thirty members. As the years passed, God brought in many more—delivering
-              people from bondages, demonic oppression, and poverty. Thirty grew to sixty, sixty
-              to a hundred and twenty. One service became two, then three. Today we are over
-              seven hundred believers. All glory belongs to God alone.
-            </p>
-            <p>
-              Our youth ministry grew too: about eighty young people were formed into three
-              teams, with lively scripture competitions and a heart to serve. We are grateful for
-              every life the Lord has added to this family.
+              We together as congregation, seek to serve God and others in our community, the commonwealth and around
+              the world in His name. We welcome you to come and worship with us, experience Christian Fellowship and
+              God's word from Pastor Joyson Dayalan at Shekinah Church, D J Halli Branch, Bangalore-45.
             </p>
             <p class="history-close">
-              <strong>All glory belongs to God alone—and to none else.</strong>
+              <strong>"All this is from God, who reconciled us to himself through Christ..."</strong>
             </p>
           </div>
         </article>
@@ -147,21 +173,21 @@
           <article class="card reveal delay-1">
             <h3>Our vision</h3>
             <p class="muted">
-              To love God, love people, and build lives through the Word, prayer, and fellowship.
+              To propagate the gospel of Lord Jesus Christ to India and the world to know and to worship God as revealed
+              in Lord Jesus Christ. To promote continued spiritual growth among the members.
             </p>
           </article>
           <article class="card reveal delay-2">
-            <h3>What to expect</h3>
+            <h3>Our goal</h3>
             <p class="muted">
-              Warm welcome, worship, Scripture-based message, and prayer. Families and first-time
-              visitors are always welcome.
+              To bring the Gospel Light to the city of Bangalore where darkness still prevails.
             </p>
           </article>
           <article class="card reveal delay-3">
-            <h3>For families</h3>
+            <h3>Our community</h3>
             <p class="muted">
-              A safe, respectful environment. Ask us about children's ministry and youth
-              gatherings.
+              Experience Christian Fellowship and God's word with Pastor Joyson Dayalan.
+              We welcome you to worship with us.
             </p>
           </article>
         </div>
@@ -565,6 +591,13 @@
       </div>
     </div>
   </footer>
+
+  <!-- ═══════ INSTAGRAM FLOATING LINK ═══════ -->
+  <a href="https://www.instagram.com/sgpf_church/" class="instagram-float" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+    </svg>
+  </a>
 
   <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
   <script src="./data/site-data.js"></script>

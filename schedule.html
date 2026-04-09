@@ -15,6 +15,13 @@
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet" />
     <link rel="icon" href="./assets/logo-compact.png" type="image/png" />
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
 
     <style>
         /* ===== DESIGN TOKENS ===== */
@@ -35,6 +42,72 @@
             --max: 1180px;
             --ease: cubic-bezier(0.22, 1, 0.36, 1);
             --dur: 1s;
+        }
+
+        [data-theme="light"] {
+            --bg: #f4f7fb;
+            --bg-card: #ffffff;
+            --bg-alt: #ebf0f7;
+            --fg: #0b1121;
+            --muted: #4b5563;
+            --muted-lt: #374151;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-glow: rgba(99, 140, 255, 0.35);
+        }
+
+        [data-theme="light"] .brand-logo,
+        [data-theme="light"] .footer-logo {
+            filter: brightness(0);
+        }
+        [data-theme="light"] body::before {
+            opacity: 0.15;
+            filter: invert(1);
+        }
+        [data-theme="light"] .site-header {
+            background: rgba(244, 247, 251, 0.8);
+        }
+        [data-theme="light"] .hero h1 {
+            background: linear-gradient(160deg, #111 30%, #555 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        [data-theme="light"] .footer-huge-line {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.01) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1px rgba(0, 0, 0, 0.05);
+        }
+        [data-theme="light"] .site-footer {
+            background: #f4f7fb;
+        }
+        [data-theme="light"] .hero-card {
+            background: #ffffff;
+        }
+
+        /* Theme Toggle Button Styles */
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--fg);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s var(--ease);
+            margin-left: 12px;
+        }
+        .theme-toggle:hover {
+            background: rgba(128, 128, 128, 0.1);
+            transform: scale(1.05);
+        }
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
         }
 
         *,
@@ -910,7 +983,25 @@
                 <img src="./assets/logo.png" alt="SGPF" class="brand-logo" height="40" />
                 <span class="brand-name">Shekinah Gospel<br />Prayer Fellowship</span>
             </a>
-            <span class="header-badge">Weekly Schedule</span>
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <span class="header-badge">Weekly Schedule</span>
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <svg id="moonIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -1150,11 +1241,46 @@
         </div>
     </footer>
 
-    <!-- Lenis Smooth Scroll -->
-    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+  <!-- ═══════ INSTAGRAM FLOATING LINK ═══════ -->
+  <a href="https://www.instagram.com/sgpf_church/" class="instagram-float" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+    </svg>
+  </a>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
     <script>
         // Year
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Theme Toggle
+        const themeToggle = document.getElementById("themeToggle");
+        if (themeToggle) {
+            const moon = themeToggle.querySelector("#moonIcon");
+            const sun = themeToggle.querySelector("#sunIcon");
+
+            const updateIcons = (theme) => {
+                if (theme === "light") {
+                    if (sun) sun.style.display = "none";
+                    if (moon) moon.style.display = "block";
+                } else {
+                    if (sun) sun.style.display = "block";
+                    if (moon) moon.style.display = "none";
+                }
+            };
+
+            const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+            updateIcons(currentTheme);
+
+            themeToggle.addEventListener("click", () => {
+                const isLight = document.documentElement.getAttribute("data-theme") === "light";
+                const newTheme = isLight ? "dark" : "light";
+                document.documentElement.setAttribute("data-theme", newTheme);
+                localStorage.setItem("theme", newTheme);
+                updateIcons(newTheme);
+            });
+        }
 
         // Lenis
         if (typeof Lenis !== 'undefined') {

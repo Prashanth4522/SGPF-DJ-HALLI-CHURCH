@@ -34,6 +34,34 @@
     });
   }
 
+  // ── Theme Toggle ────────────────────────────────────────────
+  const themeToggle = $("#themeToggle");
+  if (themeToggle) {
+    const moon = themeToggle.querySelector("#moonIcon");
+    const sun = themeToggle.querySelector("#sunIcon");
+
+    const updateIcons = (theme) => {
+      if (theme === "light") {
+        if (sun) sun.style.display = "none";
+        if (moon) moon.style.display = "block";
+      } else {
+        if (sun) sun.style.display = "block";
+        if (moon) moon.style.display = "none";
+      }
+    };
+
+    const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+    updateIcons(currentTheme);
+
+    themeToggle.addEventListener("click", () => {
+      const isLight = document.documentElement.getAttribute("data-theme") === "light";
+      const newTheme = isLight ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+      updateIcons(newTheme);
+    });
+  }
+
   // ── Header elevation on scroll ──────────────────────────────
   const header = $(".site-header");
   const setHeaderElevated = () => {
@@ -250,29 +278,33 @@
     }
 
     sermons.forEach((s) => {
-      const id = youtubeIdFromUrl(s.youtubeUrl || "");
       const card = document.createElement("article");
       card.className = "card sermon";
 
-      const ratio = document.createElement("div");
-      ratio.className = "ratio";
+      // Clickable thumbnail that links to YouTube
+      const link = document.createElement("a");
+      link.href = s.youtubeUrl || "#";
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.className = "sermon-thumb-link";
 
-      if (id) {
-        const iframe = document.createElement("iframe");
-        iframe.src = `https://www.youtube-nocookie.com/embed/${id}`;
-        iframe.title = s.title ? `Sermon: ${s.title}` : "Sermon video";
-        iframe.loading = "lazy";
-        iframe.allow =
-          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-        iframe.referrerPolicy = "strict-origin-when-cross-origin";
-        iframe.allowFullscreen = true;
-        ratio.appendChild(iframe);
-      } else {
-        ratio.style.display = "grid";
-        ratio.style.placeItems = "center";
-        ratio.style.color = "white";
-        ratio.textContent = "Add a valid YouTube link";
-      }
+      const thumbWrap = document.createElement("div");
+      thumbWrap.className = "sermon-thumb";
+
+      const img = document.createElement("img");
+      img.src = s.thumbnail || "./assets/youtube-thumb.jpg";
+      img.alt = s.title ? `Watch: ${s.title}` : "Watch on YouTube";
+      img.loading = "lazy";
+
+      // Play button overlay
+      const playBtn = document.createElement("div");
+      playBtn.className = "sermon-play-btn";
+      playBtn.setAttribute("aria-hidden", "true");
+      playBtn.innerHTML = `<svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.64 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#FF0000"/><path d="M 45,24 27,14 27,34" fill="white"/></svg>`;
+
+      thumbWrap.appendChild(img);
+      thumbWrap.appendChild(playBtn);
+      link.appendChild(thumbWrap);
 
       const title = document.createElement("p");
       title.className = "sermon-title";
@@ -282,7 +314,7 @@
       sub.className = "sermon-sub";
       sub.textContent = [s.speaker, s.date].filter(Boolean).join(" • ");
 
-      card.appendChild(ratio);
+      card.appendChild(link);
       card.appendChild(title);
       card.appendChild(sub);
       sermonsGrid.appendChild(card);

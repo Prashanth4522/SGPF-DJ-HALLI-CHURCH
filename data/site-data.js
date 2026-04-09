@@ -4,8 +4,8 @@ window.SGPF_SITE = {
   cityLine: "DJ Halli, Bengaluru",
 
   contact: {
-    phoneDisplay: "+91 00000 00000",
-    phoneDial: "+9100000000000",
+    phoneDisplay: "+91 72599 70932",
+    phoneDial: "+917259970932",
     email: "info@example.com",
     addressShort: "DJ Halli, Bengaluru",
     addressFull: "SGPF DJ Halli Church, DJ Halli, Bengaluru, Karnataka",
@@ -52,7 +52,14 @@ window.SGPF_SITE = {
     },
   ],
 
-  sermons: [],
+  sermons: [
+    {
+      title: "Sunday Service",
+      speaker: "Pastor Joyson Dayalan",
+      date: "Latest Sermon",
+      youtubeUrl: "https://youtu.be/xrx0zpsCXmA?si=rGk4Aa84Woq5buHg"
+    }
+  ],
 
   gallery: [
     { src: "./assets/gallery/sample-1.svg", alt: "Church gathering photo placeholder" },
