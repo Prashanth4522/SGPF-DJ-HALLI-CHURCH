@@ -32,9 +32,9 @@ window.SGPF_SITE = {
     {
       title: "21 Days Fasting Prayer",
       date: "2026-05-04",
-      time: "11:00 AM & 7:00 PM",
+      time: "11:00 AM and 7:00 PM",
       location: "DJ Halli, Bengaluru",
-      description: "From May 4th to May 24th, 2026. Morning: 11:00 AM. Evening: 7:00 PM.",
+      description: "From May 4 to May 24, 2026, with morning prayer at 11:00 AM and evening prayer at 7:00 PM.",
     },
   ],
 
