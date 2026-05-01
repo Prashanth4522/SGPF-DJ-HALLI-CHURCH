@@ -241,6 +241,54 @@
     });
   }
 
+  // ── One-time fasting prayer announcement ────────────────────
+  const fastingPrayerAnnouncement = $("#fastingPrayerAnnouncement");
+  const announcementGoEventsBtn = $("#announcementGoEventsBtn");
+  const announcementCancelBtn = $("#announcementCancelBtn");
+  const announcementShownKey = "sgpfFastingPrayerAnnouncementShown";
+
+  const closeAnnouncement = () => {
+    if (!fastingPrayerAnnouncement) return;
+    fastingPrayerAnnouncement.setAttribute("hidden", "");
+    document.documentElement.classList.remove("announcement-open");
+    document.body.classList.remove("announcement-open");
+    if (lenisInstance) lenisInstance.start();
+  };
+
+  const openAnnouncement = () => {
+    if (!fastingPrayerAnnouncement) return;
+    fastingPrayerAnnouncement.removeAttribute("hidden");
+    document.documentElement.classList.add("announcement-open");
+    document.body.classList.add("announcement-open");
+    if (lenisInstance) lenisInstance.stop();
+  };
+
+  if (fastingPrayerAnnouncement && announcementGoEventsBtn) {
+    const alreadyShown = localStorage.getItem(announcementShownKey) === "1";
+
+    if (!alreadyShown) {
+      window.setTimeout(() => {
+        openAnnouncement();
+        localStorage.setItem(announcementShownKey, "1");
+      }, 5000);
+    }
+
+    announcementGoEventsBtn.addEventListener("click", () => {
+      closeAnnouncement();
+      const eventsTarget = document.querySelector("#events-poster") || document.querySelector("#events");
+      if (!eventsTarget) return;
+      if (lenisInstance) {
+        lenisInstance.scrollTo(eventsTarget, { offset: -80 });
+      } else {
+        eventsTarget.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+
+    if (announcementCancelBtn) {
+      announcementCancelBtn.addEventListener("click", closeAnnouncement);
+    }
+  }
+
   // ── Social links ────────────────────────────────────────────
   const socialContainers = $$('#socialLinks, #socialLinks2');
   const social = Array.isArray(site.social) ? site.social : [];
