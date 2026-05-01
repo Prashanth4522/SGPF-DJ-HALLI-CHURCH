@@ -35,6 +35,7 @@ window.SGPF_SITE = {
       time: "11:00 AM and 7:00 PM",
       location: "DJ Halli, Bengaluru",
       description: "From May 4 to May 24, 2026, with morning prayer at 11:00 AM and evening prayer at 7:00 PM.",
+      displayLine: "May 4th–24th, 2026 • Morning 11:00 AM & Evening 7:00 PM • DJ Halli, Bengaluru",
     },
   ],
 

@@ -289,7 +289,7 @@
         title.textContent = ev.title || "Event";
         const meta = document.createElement("p");
         meta.className = "event-meta";
-        meta.textContent = [
+        meta.textContent = ev.displayLine || [
           when.long,
           ev.location || contact.addressShort || "",
           ev.description || "",
