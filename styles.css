@@ -1427,6 +1427,21 @@ label {
   gap: 16px;
 }
 
+.contact-map {
+  margin-top: 18px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+}
+
+.contact-map iframe {
+  display: block;
+  width: 100%;
+  min-height: 260px;
+  border: 0;
+}
+
 .field-hint {
   font-size: 13px;
   color: #ef4444;

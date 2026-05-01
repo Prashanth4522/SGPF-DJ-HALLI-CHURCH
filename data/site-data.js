@@ -4,11 +4,13 @@ window.SGPF_SITE = {
   cityLine: "DJ Halli, Bengaluru",
 
   contact: {
-    email: "info@example.com",
+    instagramUrl: "https://www.instagram.com/sgpf_church/",
+    instagramHandle: "@sgpf_church",
     addressShort: "DJ Halli, Bengaluru",
     addressFull: "SGPF DJ Halli Church, DJ Halli, Bengaluru, Karnataka",
-    mapsQuery: "SGPF DJ Halli Church, DJ Halli, Bengaluru",
-    mapsUrl: "https://maps.app.goo.gl/hQnhJXpahUEw78Ed9",
+    mapsQuery: "13.0150612,77.6111842",
+    mapsUrl: "https://maps.app.goo.gl/wAtdxaX4xZwhvbKYA",
+    mapsEmbedUrl: "https://www.google.com/maps?q=13.0150612,77.6111842&z=17&output=embed",
   },
 
   serviceTimes: {

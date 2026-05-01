@@ -148,11 +148,14 @@
     phoneLink.setAttribute("href", `tel:${phoneDial}`);
   }
 
-  const emailLink = $("#emailLink");
-  if (emailLink) {
-    const email = contact.email || "info@example.com";
-    emailLink.textContent = email;
-    emailLink.setAttribute("href", `mailto:${email}`);
+  const instagramLink = $("#instagramLink");
+  if (instagramLink) {
+    const handle = contact.instagramHandle || "@sgpf_church";
+    const url = contact.instagramUrl || "https://www.instagram.com/sgpf_church/";
+    instagramLink.textContent = handle;
+    instagramLink.setAttribute("href", url);
+    instagramLink.setAttribute("target", "_blank");
+    instagramLink.setAttribute("rel", "noreferrer");
   }
 
   $$("[data-contact='addressShort']").forEach((el) => (el.textContent = contact.addressShort || "DJ Halli, Bengaluru"));
@@ -168,6 +171,15 @@
     mapsLink.setAttribute("href", url);
     mapsLink.setAttribute("target", "_blank");
     mapsLink.setAttribute("rel", "noreferrer");
+  }
+
+  const mapsEmbed = $("#mapsEmbed");
+  if (mapsEmbed) {
+    const q = encodeURIComponent(contact.mapsQuery || contact.addressFull || "DJ Halli, Bengaluru");
+    mapsEmbed.setAttribute(
+      "src",
+      contact.mapsEmbedUrl || `https://www.google.com/maps?q=${q}&output=embed`,
+    );
   }
 
   // ── Social links ────────────────────────────────────────────
@@ -371,7 +383,7 @@
         return;
       }
 
-      const to = contact.email || "info@example.com";
+      const to = contact.email || "";
       const subject = `Message from ${name} (${site.churchName || "SGPF DJ HALLI CHURCH"})`;
       const lines = [
         `Name: ${name}`,
@@ -381,12 +393,17 @@
         message,
       ].filter(Boolean);
       const body = lines.join("\n");
-      const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(
-        subject,
-      )}&body=${encodeURIComponent(body)}`;
-
-      if (status) status.textContent = "Opening your email app…";
-      window.location.href = mailto;
+      if (to) {
+        const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(
+          subject,
+        )}&body=${encodeURIComponent(body)}`;
+        if (status) status.textContent = "Opening your email app…";
+        window.location.href = mailto;
+      } else {
+        const insta = contact.instagramUrl || "https://www.instagram.com/sgpf_church/";
+        if (status) status.textContent = "Please message us on Instagram.";
+        window.open(insta, "_blank", "noopener,noreferrer");
+      }
     });
   }
 
