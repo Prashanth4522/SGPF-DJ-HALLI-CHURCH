@@ -6,8 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#060a12" />
     <meta name="description"
-        content="Shekinah Gospel Prayer Fellowship — Weekly Church Schedule. Join us for Sunday Services, Bible Study, Prayer, and more." />
-    <title>Weekly Schedule — Shekinah Gospel Prayer Fellowship</title>
+        content="Weekly schedule at SGPF DJ Halli (Shekinah Gospel Prayer Fellowship). Join our Sunday Services, Bible study, healing prayer, and youth gathering in Bangalore." />
+    <title>Weekly Schedule | SGPF DJ Halli - Shekinah Gospel Prayer Fellowship</title>
+    <meta name="keywords" content="SGPF, SGPF DJ Halli, Shekinah church Bangalore, Shekinah Gospel Prayer Fellowship, church in DJ Halli Bangalore" />
+    <meta property="og:title" content="Weekly Schedule | SGPF DJ Halli - Shekinah Gospel Prayer Fellowship" />
+    <meta property="og:description" content="Weekly schedule at SGPF DJ Halli. Join our Sunday Services, Bible study, and more in Bangalore." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.sgpfdjhallichurch.com/schedule.html" />
+    <meta property="og:image" content="https://www.sgpfdjhallichurch.com/assets/poster.jpg" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Church",
+      "name": "Shekinah Gospel Prayer Fellowship",
+      "alternateName": ["SGPF DJ Halli", "SGPF", "Shekinah church Bangalore"],
+      "description": "Shekinah Gospel Prayer Fellowship (SGPF) is a Bible-believing, Spirit-filled church in DJ Halli, Bangalore.",
+      "url": "https://www.sgpfdjhallichurch.com/",
+      "logo": "https://www.sgpfdjhallichurch.com/assets/logo.png",
+      "image": "https://www.sgpfdjhallichurch.com/assets/poster.jpg",
+      "telephone": "+91-7259970932",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "DJ Halli",
+        "addressLocality": "Bengaluru",
+        "addressRegion": "Karnataka",
+        "addressCountry": "IN"
+      }
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,13 +52,13 @@
     <style>
         /* ===== DESIGN TOKENS ===== */
         :root {
-            --bg: #060a12;
-            --bg-card: #0d1422;
-            --bg-alt: #0a0f1c;
-            --fg: #f0f4ff;
-            --muted: #8896b3;
-            --muted-lt: #b0bedb;
-            --border: rgba(255, 255, 255, 0.07);
+            --bg: #f4f7fb;
+            --bg-card: #ffffff;
+            --bg-alt: #ebf0f7;
+            --fg: #0b1121;
+            --muted: #4b5563;
+            --muted-lt: #374151;
+            --border: rgba(0, 0, 0, 0.08);
             --border-glow: rgba(99, 140, 255, 0.35);
             --accent: #638cff;
             --accent2: #a78bfa;
@@ -44,46 +70,76 @@
             --dur: 1s;
         }
 
-        [data-theme="light"] {
-            --bg: #f4f7fb;
-            --bg-card: #ffffff;
-            --bg-alt: #ebf0f7;
-            --fg: #0b1121;
-            --muted: #4b5563;
-            --muted-lt: #374151;
-            --border: rgba(0, 0, 0, 0.08);
+        [data-theme="dark"] {
+            --bg: #060a12;
+            --bg-card: #0d1422;
+            --bg-alt: #0a0f1c;
+            --fg: #f0f4ff;
+            --muted: #8896b3;
+            --muted-lt: #b0bedb;
+            --border: rgba(255, 255, 255, 0.07);
             --border-glow: rgba(99, 140, 255, 0.35);
         }
 
-        [data-theme="light"] .brand-logo,
-        [data-theme="light"] .footer-logo {
+        .brand-logo,
+        .footer-logo {
             filter: brightness(0);
         }
-        [data-theme="light"] body::before {
+        [data-theme="dark"] .brand-logo,
+        [data-theme="dark"] .footer-logo {
+            filter: none;
+        }
+        body::before {
             opacity: 0.15;
             filter: invert(1);
         }
-        [data-theme="light"] .site-header {
+        [data-theme="dark"] body::before {
+            opacity: 0.03;
+            filter: none;
+        }
+        .site-header {
             background: rgba(244, 247, 251, 0.8);
         }
-        [data-theme="light"] .hero h1 {
+        [data-theme="dark"] .site-header {
+            background: rgba(6, 10, 18, 0.8);
+        }
+        .hero h1 {
             background: linear-gradient(160deg, #111 30%, #555 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        [data-theme="light"] .footer-huge-line {
+        [data-theme="dark"] .hero h1 {
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.95) 30%, rgba(255, 255, 255, 0.6) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .footer-huge-line {
             background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.01) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             -webkit-text-stroke: 1px rgba(0, 0, 0, 0.05);
         }
-        [data-theme="light"] .site-footer {
+        [data-theme="dark"] .footer-huge-line {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.04);
+        }
+        .site-footer {
             background: #f4f7fb;
         }
-        [data-theme="light"] .hero-card {
+        [data-theme="dark"] .site-footer {
+            background: #030609;
+        }
+        .hero-card {
             background: #ffffff;
+        }
+        [data-theme="dark"] .hero-card {
+            background: var(--bg-card);
         }
 
         /* Theme Toggle Button Styles */
@@ -980,7 +1036,7 @@
     <header class="site-header">
         <div class="container header-inner">
             <a href="./index.html" class="brand-link">
-                <img src="./assets/logo.png" alt="SGPF" class="brand-logo" height="40" />
+                <img src="./assets/logo.png" alt="SGPF DJ Halli Shekinah Church Bangalore Logo" class="brand-logo" height="40" loading="lazy" />
                 <span class="brand-name">Shekinah Gospel<br />Prayer Fellowship</span>
             </a>
             <div style="display: flex; align-items: center; gap: 16px;">
@@ -1011,7 +1067,7 @@
         <section class="hero">
             <div class="container">
                 <p class="hero-eyebrow">Church Weekly Schedule</p>
-                <h1>Shekinah Gospel Prayer Fellowship</h1>
+                <h1>SGPF DJ Halli - Shekinah Gospel Prayer Fellowship</h1>
 
                 <div class="hero-verse">
                     <blockquote>"How good and pleasant it is when God's people live together in unity!"</blockquote>
@@ -1201,7 +1257,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <img src="./assets/logo.png" alt="SGPF" height="44"
+                    <img src="./assets/logo.png" alt="SGPF DJ Halli Church Logo" height="44"
                         style="filter:brightness(0) invert(1); margin-bottom: 4px;" loading="lazy" />
                     <p class="footer-brand-name">Shekinah Gospel Prayer Fellowship</p>
                     <p class="footer-tagline">A community growing in faith, prayer, and the love of God — together in

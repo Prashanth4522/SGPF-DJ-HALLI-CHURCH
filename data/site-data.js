@@ -4,8 +4,6 @@ window.SGPF_SITE = {
   cityLine: "DJ Halli, Bengaluru",
 
   contact: {
-    phoneDisplay: "+91 72599 70932",
-    phoneDial: "+917259970932",
     email: "info@example.com",
     addressShort: "DJ Halli, Bengaluru",
     addressFull: "SGPF DJ Halli Church, DJ Halli, Bengaluru, Karnataka",
@@ -62,11 +60,11 @@ window.SGPF_SITE = {
   ],
 
   gallery: [
-    { src: "./assets/gallery/sample-1.svg", alt: "Church gathering photo placeholder" },
-    { src: "./assets/gallery/sample-2.svg", alt: "Worship photo placeholder" },
-    { src: "./assets/gallery/sample-3.svg", alt: "Fellowship photo placeholder" },
-    { src: "./assets/gallery/sample-4.svg", alt: "Prayer meeting photo placeholder" },
-    { src: "./assets/gallery/sample-5.svg", alt: "Community photo placeholder" },
+    { src: "./assets/gallery/sample-1.svg", alt: "SGPF DJ Halli Church gathering" },
+    { src: "./assets/gallery/sample-2.svg", alt: "Shekinah Gospel Prayer Fellowship Worship" },
+    { src: "./assets/gallery/sample-3.svg", alt: "Church in DJ Halli Bangalore Fellowship" },
+    { src: "./assets/gallery/sample-4.svg", alt: "SGPF DJ Halli prayer meeting" },
+    { src: "./assets/gallery/sample-5.svg", alt: "Shekinah church Bangalore Community" },
   ],
 };
 

@@ -293,7 +293,7 @@
 
       const img = document.createElement("img");
       img.src = s.thumbnail || "./assets/youtube-thumb.jpg";
-      img.alt = s.title ? `Watch: ${s.title}` : "Watch on YouTube";
+      img.alt = s.title ? `Watch SGPF DJ Halli Sermon: ${s.title}` : "Watch Shekinah Gospel Prayer Fellowship on YouTube";
       img.loading = "lazy";
 
       // Play button overlay
