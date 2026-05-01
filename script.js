@@ -1,6 +1,7 @@
 /* SGPF DJ HALLI CHURCH — Main Script */
 (() => {
   const site = window.SGPF_SITE || {};
+  let lenisInstance = null;
 
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -15,6 +16,7 @@
       wheelMultiplier: 0.9,
       smoothTouch: false,
     });
+    lenisInstance = lenis;
 
     function raf(time) {
       lenis.raf(time);
@@ -180,6 +182,63 @@
       "src",
       contact.mapsEmbedUrl || `https://www.google.com/maps?q=${q}&output=embed`,
     );
+  }
+
+  // ── Weekly poster modal ─────────────────────────────────────
+  const openWeeklyPosterBtn = $("#openWeeklyPosterBtn");
+  const weeklyPosterModal = $("#weeklyPosterModal");
+  const closeWeeklyPosterBtn = $("#closeWeeklyPosterBtn");
+  const posterModalContent = weeklyPosterModal ? $(".poster-modal-content", weeklyPosterModal) : null;
+
+  const trapBackgroundScroll = (e) => {
+    if (!weeklyPosterModal || weeklyPosterModal.hasAttribute("hidden")) return;
+    const path = typeof e.composedPath === "function" ? e.composedPath() : [];
+    if (posterModalContent && path.includes(posterModalContent)) return;
+    const t = e.target;
+    if (t instanceof Element && posterModalContent && posterModalContent.contains(t)) return;
+    e.preventDefault();
+  };
+
+  const closeWeeklyPosterModal = () => {
+    if (!weeklyPosterModal) return;
+    weeklyPosterModal.setAttribute("hidden", "");
+    document.documentElement.classList.remove("modal-open");
+    document.body.classList.remove("modal-open");
+    if (lenisInstance) lenisInstance.start();
+    document.removeEventListener("wheel", trapBackgroundScroll, { capture: true });
+    document.removeEventListener("touchmove", trapBackgroundScroll, { capture: true });
+  };
+
+  const openWeeklyPosterModal = () => {
+    if (!weeklyPosterModal) return;
+    weeklyPosterModal.removeAttribute("hidden");
+    document.documentElement.classList.add("modal-open");
+    document.body.classList.add("modal-open");
+    if (lenisInstance) lenisInstance.stop();
+    document.addEventListener("wheel", trapBackgroundScroll, { passive: false, capture: true });
+    document.addEventListener("touchmove", trapBackgroundScroll, { passive: false, capture: true });
+  };
+
+  if (openWeeklyPosterBtn && weeklyPosterModal) {
+    openWeeklyPosterBtn.addEventListener("click", openWeeklyPosterModal);
+
+    if (closeWeeklyPosterBtn) {
+      closeWeeklyPosterBtn.addEventListener("click", closeWeeklyPosterModal);
+    }
+
+    weeklyPosterModal.addEventListener("click", (e) => {
+      const t = e.target;
+      if (!(t instanceof Element)) return;
+      if (t.matches("[data-close-poster-modal]")) {
+        closeWeeklyPosterModal();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !weeklyPosterModal.hasAttribute("hidden")) {
+        closeWeeklyPosterModal();
+      }
+    });
   }
 
   // ── Social links ────────────────────────────────────────────

@@ -417,13 +417,128 @@ body::before {
    POSTER BANNER
    ═══════════════════ */
 .section-poster {
-  padding: 120px 0 40px;
+  padding: 116px 0 34px;
   background: radial-gradient(circle at 50% 0%, rgba(99, 140, 255, 0.08), transparent 70%);
 }
 
 .poster-wrapper {
-  max-width: 800px;
+  max-width: 820px;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.poster-open-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(146, 174, 255, 0.45);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(99, 140, 255, 0.08));
+  color: var(--fg);
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(20, 30, 60, 0.25);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+
+.poster-open-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgba(146, 174, 255, 0.8);
+  box-shadow: 0 16px 34px rgba(20, 30, 60, 0.35);
+}
+
+.poster-btn-text {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.poster-modal[hidden] {
+  display: none;
+}
+
+.poster-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.poster-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 10, 20, 0.82);
+  backdrop-filter: blur(4px);
+}
+
+.poster-modal-content {
+  position: relative;
+  z-index: 1;
+  width: min(92vw, 560px);
+  max-height: 88vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.5);
+  touch-action: pan-y;
+}
+
+.poster-modal-title {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-lt);
+}
+
+.poster-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--fg);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.poster-modal-img {
+  display: block;
+  width: min(100%, 520px);
+  max-height: none;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+html.modal-open,
+body.modal-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body.modal-open .site-header,
+body.modal-open .site-footer,
+body.modal-open .instagram-float,
+body.modal-open main > *:not(.poster-modal) {
+  pointer-events: none;
 }
 
 

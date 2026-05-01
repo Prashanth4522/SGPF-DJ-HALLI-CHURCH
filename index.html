@@ -132,15 +132,22 @@
     <!-- ═══════ WEEKLY SCHEDULE POSTER ═══════ -->
     <section id="announcement" class="section-poster reveal">
       <div class="container poster-wrapper">
-        <div class="poster-card">
-          <img src="./assets/poster.jpg" alt="SGPF DJ Halli Church Weekly Schedule" class="poster-img" loading="lazy" />
-          <div class="poster-overlay"></div>
-        </div>
-        <div class="poster-hint">
-          <span>Official Weekly Schedule</span>
-        </div>
+        <button type="button" class="poster-open-btn" id="openWeeklyPosterBtn" aria-haspopup="dialog" aria-controls="weeklyPosterModal">
+          <span class="poster-btn-text">Weekly Schedule</span>
+        </button>
       </div>
     </section>
+
+    <div class="poster-modal" id="weeklyPosterModal" role="dialog" aria-modal="true" aria-labelledby="weeklyPosterTitle" hidden>
+      <div class="poster-modal-backdrop" data-close-poster-modal></div>
+      <div class="poster-modal-content">
+        <button type="button" class="poster-modal-close" id="closeWeeklyPosterBtn" aria-label="Close weekly schedule poster">
+          &times;
+        </button>
+        <p class="poster-modal-title" id="weeklyPosterTitle">Official Weekly Schedule</p>
+        <img src="./assets/poster.jpg" alt="SGPF DJ Halli Church Weekly Schedule" class="poster-modal-img" loading="lazy" />
+      </div>
+    </div>
 
     <!-- ═══════ HERO ═══════ -->
     <section id="top" class="hero">
@@ -160,6 +167,7 @@
         <div class="hero-actions">
           <a class="btn btn-primary" href="#schedule">See weekly schedule</a>
           <a class="btn btn-ghost" href="#contact">Plan a visit</a>
+          <a class="btn btn-primary" href="#events-poster">Important announcement</a>
         </div>
 
         <!-- Running Announcement Banner -->
@@ -410,7 +418,7 @@
         </div>
 
         <div class="events" id="eventsList" aria-live="polite"></div>
-        <article class="card events-poster-card">
+        <article class="card events-poster-card" id="events-poster">
           <img
             src="./assets/21%20days%20fp.png"
             alt="21 Days Fasting Prayer event poster"
