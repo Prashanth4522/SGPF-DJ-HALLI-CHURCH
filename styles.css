@@ -605,14 +605,25 @@ body.modal-open main > *:not(.poster-modal) {
 }
 
 .announcement-cancel-btn {
-  background: rgba(255, 255, 255, 0.14);
-  color: #f4f8ff;
-  border: 1px solid rgba(193, 214, 255, 0.5);
+  background: #f2f6ff;
+  color: #122446;
+  -webkit-text-fill-color: #122446;
+  border: 1px solid #d3e1ff;
+  font-weight: 700;
 }
 
 .announcement-cancel-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(193, 214, 255, 0.8);
+  background: #ffffff;
+  color: #0d1e3d;
+  -webkit-text-fill-color: #0d1e3d;
+  border-color: #b7ceff;
+}
+
+@media (max-width: 768px) {
+  .announcement-cancel-btn {
+    color: #0f2344;
+    -webkit-text-fill-color: #0f2344;
+  }
 }
 
 html.announcement-open,
