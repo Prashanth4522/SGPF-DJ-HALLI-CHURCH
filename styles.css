@@ -426,42 +426,6 @@ body::before {
   margin: 0 auto;
 }
 
-.poster-card {
-  position: relative;
-  background: #fff;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
-  transition: transform 0.6s var(--ease);
-}
-
-.poster-card:hover {
-  transform: translateY(-8px) scale(1.01);
-}
-
-.poster-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  user-select: none;
-}
-
-.poster-overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(180deg, transparent 70%, rgba(0, 0, 0, 0.05) 100%);
-}
-
-.poster-hint {
-  text-align: center;
-  margin-top: 24px;
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
 
 /* ═══════════════════
    HERO
@@ -1239,7 +1203,16 @@ h3 {
   height: 64px;
   border-radius: 16px;
   background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+  color: #fff;
+  display: grid;
+  place-items: center;
   flex-shrink: 0;
+}
+
+.sermon-reels-icon svg {
+  width: 34px;
+  height: 34px;
+  display: block;
 }
 
 .sermon-reels .sermon-sub {
@@ -1425,6 +1398,21 @@ label {
   display: flex;
   align-items: center;
   gap: 16px;
+}
+
+.events-poster-card {
+  margin-top: 20px;
+}
+
+.events-poster-img {
+  display: block;
+  width: min(100%, 600px);
+  max-height: 900px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
 }
 
 .contact-map {

@@ -30,25 +30,11 @@ window.SGPF_SITE = {
 
   events: [
     {
-      title: "Sunday Worship Service",
-      date: "2026-02-22",
-      time: "10:00 AM",
+      title: "21 Days Fasting Prayer",
+      date: "2026-05-04",
+      time: "11:00 AM & 7:00 PM",
       location: "DJ Halli, Bengaluru",
-      description: "Worship, Word, and prayer.",
-    },
-    {
-      title: "Midweek Prayer Meeting",
-      date: "2026-02-18",
-      time: "7:00 PM",
-      location: "DJ Halli, Bengaluru",
-      description: "A focused time of prayer and encouragement.",
-    },
-    {
-      title: "Youth Fellowship",
-      date: "2026-02-21",
-      time: "6:30 PM",
-      location: "DJ Halli, Bengaluru",
-      description: "Worship, sharing, and Bible discussion.",
+      description: "From May 4th to May 24th, 2026. Morning: 11:00 AM. Evening: 7:00 PM.",
     },
   ],
 
