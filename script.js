@@ -56,8 +56,8 @@
   // ── Mobile menu ─────────────────────────────────────────────
   const navToggle = $(".nav-toggle");
   const navMenu = $("#navMenu");
-  const closeMenu = () => { navToggle?.setAttribute("aria-expanded","false"); navMenu?.classList.remove("is-open"); };
-  const openMenu = () => { navToggle?.setAttribute("aria-expanded","true"); navMenu?.classList.add("is-open"); };
+  const closeMenu = () => { navToggle?.setAttribute("aria-expanded","false"); navMenu?.classList.remove("is-open"); document.body.classList.remove("nav-open"); };
+  const openMenu = () => { navToggle?.setAttribute("aria-expanded","true"); navMenu?.classList.add("is-open"); document.body.classList.add("nav-open"); };
   if (navToggle && navMenu) {
     navToggle.addEventListener("click", () => navToggle.getAttribute("aria-expanded")==="true" ? closeMenu() : openMenu());
     document.addEventListener("click", (e) => {
