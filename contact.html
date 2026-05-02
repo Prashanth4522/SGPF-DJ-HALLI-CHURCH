@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f4f7fb" />
+  <meta name="robots" content="index, follow" />
+  <meta name="description" content="Get in touch with SGPF DJ Halli Church Bengaluru. Find our address, location map, and contact details." />
+  <title>Contact & Church Location | SGPF DJ Halli Bengaluru</title>
+  <link rel="canonical" href="https://www.sgpfdjhallichurch.com/contact.html" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="./assets/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.sgpfdjhallichurch.com/index.html"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Contact Us",
+      "item": "https://www.sgpfdjhallichurch.com/contact.html"
+    }]
+  }
+  </script>
+</head>
+
+<body>
+  <div class="page-glow" aria-hidden="true"></div>
+
+  <header class="site-header" data-elevate>
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img src="./assets/logo.png" alt="SGPF Logo" class="brand-logo" />
+      </a>
+      <nav class="nav">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu">
+          <span class="nav-toggle-bars"></span>
+        </button>
+        <div class="nav-menu" id="navMenu">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="schedule.html">Schedule</a>
+          <a href="events.html">Events</a>
+          <a href="sermons.html">Sermons</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="giving.html">Giving</a>
+          <a href="contact.html" class="nav-cta active">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section reveal">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Connect</span>
+          <h1>Contact Us</h1>
+          <p class="muted">Have a question or need prayer? Reach out to us below.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card">
+            <h3>Church Details</h3>
+            <dl class="dl">
+              <div>
+                <dt>Instagram</dt>
+                <dd><a href="https://www.instagram.com/sgpf_church/" id="instagramLink" target="_blank">@sgpf_church</a></dd>
+              </div>
+              <div>
+                <dt>Address</dt>
+                <dd>
+                  <span data-contact="addressFull">SGPF DJ Halli Church, DJ Halli, Bengaluru, Karnataka</span>
+                </dd>
+              </div>
+            </dl>
+
+            <div class="contact-map">
+              <iframe
+                id="mapsEmbed"
+                title="SGPF DJ Halli Church Map"
+                loading="lazy"
+                src="https://www.google.com/maps?q=13.0150612,77.6111842&z=17&output=embed"
+              ></iframe>
+            </div>
+            
+            <div class="card-actions" style="margin-top: 20px;">
+               <a href="https://www.google.com/maps?q=13.0150612,77.6111842" class="btn btn-ghost" target="_blank">Open in Google Maps</a>
+            </div>
+          </div>
+
+          <form class="card form" id="contactForm" novalidate>
+            <h3>Send a Message</h3>
+            <div class="form-row">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" required />
+            </div>
+            <div class="form-row">
+              <label for="phone">Phone (optional)</label>
+              <input id="phone" name="phone" type="tel" />
+            </div>
+            <div class="form-row">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <div class="form-row form-row-inline">
+              <label class="checkbox">
+                <input id="prayer" name="prayer" type="checkbox" />
+                <span>Prayer request</span>
+              </label>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">Send Message</button>
+              <p class="muted small" id="formStatus"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img src="./assets/logo.png" alt="SGPF Logo" class="footer-logo" />
+          <p class="footer-brand">SGPF DJ HALLI CHURCH</p>
+        </div>
+        <div>
+          <p class="footer-title">Quick links</p>
+          <ul class="footer-links">
+            <li><a href="schedule.html">Schedule</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-title">Social</p>
+          <ul class="footer-links" id="socialLinks"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-antigravity">
+      <div class="footer-huge">
+        <span class="footer-huge-line">Sgpf</span>
+        <span class="footer-huge-line">D j halli</span>
+      </div>
+      <div class="footer-final-bar">
+        <p>© <span id="year"></span> SGPF DJ HALLI CHURCH. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="./data/site-data.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
