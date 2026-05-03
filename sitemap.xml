@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.sgpfdjhallichurch.com/index.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <loc>https://sgpfdjhalli.com/</loc>
+    <lastmod>2026-05-03</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.sgpfdjhallichurch.com/about.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <loc>https://sgpfdjhalli.com/about</loc>
+    <lastmod>2026-05-03</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.sgpfdjhallichurch.com/schedule.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <loc>https://sgpfdjhalli.com/schedule</loc>
+    <lastmod>2026-05-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.sgpfdjhallichurch.com/events.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <loc>https://sgpfdjhalli.com/events</loc>
+    <lastmod>2026-05-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.sgpfdjhallichurch.com/sermons.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <loc>https://sgpfdjhalli.com/sermons</loc>
+    <lastmod>2026-05-03</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.sgpfdjhallichurch.com/gallery.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <loc>https://sgpfdjhalli.com/gallery</loc>
+    <lastmod>2026-05-03</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.sgpfdjhallichurch.com/giving.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <loc>https://sgpfdjhalli.com/giving</loc>
+    <lastmod>2026-05-03</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.sgpfdjhallichurch.com/contact.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <loc>https://sgpfdjhalli.com/contact</loc>
+    <lastmod>2026-05-03</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>
