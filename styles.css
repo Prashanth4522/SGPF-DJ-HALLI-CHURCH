@@ -2136,6 +2136,10 @@ label {
     gap: 24px;
   }
 
+  .footer-huge::after {
+    height: 40px;
+  }
+
   .footer-huge-line {
     font-size: clamp(3rem, 16vw, 8rem);
     line-height: 0.9;

@@ -44,7 +44,7 @@ window.SGPF_SITE = {
       title: "Sunday Service",
       speaker: "Pastor Joyson Dayalan",
       date: "Latest Sermon",
-      youtubeUrl: "https://youtu.be/xrx0zpsCXmA?si=rGk4Aa84Woq5buHg"
+      youtubeUrl: "https://youtu.be/2c96ZsJ2wTc?si=9_pd5L5vWaMnDdFd"
     }
   ],
 
