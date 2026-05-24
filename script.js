@@ -231,6 +231,117 @@
     }
   }
 
+  // ── Beneath-Hero Sermon Player & Playlists ────────────────────
+  const featuredPlayerCarousel = $("#featuredPlayerCarousel");
+  const mainYoutubePlayer = $("#mainYoutubePlayer");
+  const playlists = Array.isArray(site.playlists) ? site.playlists : [];
+
+  if (featuredPlayerCarousel && mainYoutubePlayer && playlists.length > 0) {
+    const featuredSeries = playlists[0];
+    const videos = featuredSeries.videos || [];
+
+    const seriesTitleEl = $("#carouselSeriesTitle");
+    const videoCountEl = $("#carouselVideoCount");
+    if (seriesTitleEl) seriesTitleEl.textContent = `Series: ${featuredSeries.title}`;
+    if (videoCountEl) videoCountEl.textContent = `${videos.length} ${videos.length === 1 ? 'Video' : 'Videos'}`;
+
+    featuredPlayerCarousel.innerHTML = "";
+
+    const setVideo = (idx) => {
+      const v = videos[idx];
+      const videoId = youtubeIdFromUrl(v.youtubeUrl);
+      if (videoId) {
+        mainYoutubePlayer.src = `https://www.youtube.com/embed/${videoId}?rel=0`;
+      }
+
+      const thumbs = $$(".carousel-item", featuredPlayerCarousel);
+      thumbs.forEach((thumb, i) => {
+        thumb.classList.toggle("is-active", i === idx);
+      });
+    };
+
+    videos.forEach((v, idx) => {
+      const item = document.createElement("div");
+      item.className = `carousel-item ${idx === 0 ? 'is-active' : ''}`;
+      
+      const videoId = youtubeIdFromUrl(v.youtubeUrl);
+      const thumbUrl = v.thumbnail || (videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : "./assets/youtube-thumb.jpg");
+
+      item.innerHTML = `
+        <div class="carousel-item-thumb">
+          <img src="${thumbUrl}" alt="${escapeHtml(v.title)}" loading="lazy" />
+          <div class="carousel-item-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="carousel-item-details">
+          <p class="carousel-item-title">${escapeHtml(v.title)}</p>
+          <p class="carousel-item-sub">${escapeHtml(v.speaker || "Pastor Joyson Dayalan")}</p>
+        </div>
+      `;
+
+      item.addEventListener("click", () => {
+        const videoId = youtubeIdFromUrl(v.youtubeUrl);
+        if (videoId) {
+          mainYoutubePlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+        }
+        const thumbs = $$(".carousel-item", featuredPlayerCarousel);
+        thumbs.forEach((thumb, i) => {
+          thumb.classList.toggle("is-active", i === idx);
+        });
+      });
+
+      featuredPlayerCarousel.appendChild(item);
+    });
+
+    setVideo(0);
+  }
+
+  // ── Playlist Grid Rendering (Sermons page) ────────────────────
+  const playlistsGrid = $("#playlistsGrid");
+  if (playlistsGrid && playlists.length > 0) {
+    playlistsGrid.innerHTML = "";
+    playlists.forEach(pl => {
+      const plCard = document.createElement("article");
+      plCard.className = "playlist-card reveal";
+
+      const videos = pl.videos || [];
+      const videoItemsHTML = videos.map((v, i) => {
+        const videoId = youtubeIdFromUrl(v.youtubeUrl);
+        const thumbUrl = v.thumbnail || (videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : "./assets/youtube-thumb.jpg");
+        return `
+          <div class="playlist-video-item">
+            <a href="${v.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="playlist-video-link">
+              <div class="playlist-video-thumb">
+                <img src="${thumbUrl}" alt="${escapeHtml(v.title)}" loading="lazy" />
+                <div class="playlist-video-play-btn"><svg viewBox="0 0 24 24" width="16" height="16" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+              </div>
+              <div class="playlist-video-details">
+                <h4 class="playlist-video-title">${escapeHtml(v.title)}</h4>
+                <p class="playlist-video-meta">${escapeHtml(v.speaker)} • ${escapeHtml(v.date || "Sermon")}</p>
+              </div>
+            </a>
+          </div>
+        `;
+      }).join("");
+
+      plCard.innerHTML = `
+        <div class="playlist-card-info">
+          <span class="playlist-card-badge">SERIES</span>
+          <h3 class="playlist-card-title">${escapeHtml(pl.title)}</h3>
+          <p class="playlist-card-desc">${escapeHtml(pl.description)}</p>
+          <span class="playlist-card-count">${videos.length} Videos</span>
+        </div>
+        <div class="playlist-card-items">
+          ${videoItemsHTML}
+        </div>
+      `;
+
+      playlistsGrid.appendChild(plCard);
+      observer.observe(plCard);
+    });
+  }
+
   // ── Gallery ───────────────────────────────────────────────────
   const galleryGrid = $("#galleryGrid");
   const gallery = Array.isArray(site.gallery) ? site.gallery : [];

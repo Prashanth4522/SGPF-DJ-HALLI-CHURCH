@@ -41,10 +41,37 @@ window.SGPF_SITE = {
 
   sermons: [
     {
-      title: "Sunday Service",
+      title: "For a Consistent Prayer Life… Part - 2",
       speaker: "Pastor Joyson Dayalan",
       date: "Latest Sermon",
+      youtubeUrl: "https://youtu.be/TvOcJ_5m40c?si=0i0PHUyVVQxiFQ40"
+    },
+    {
+      title: "For a Consistent Prayer Life…",
+      speaker: "Pastor Joyson Dayalan",
+      date: "Sunday Message",
       youtubeUrl: "https://youtu.be/2c96ZsJ2wTc?si=9_pd5L5vWaMnDdFd"
+    }
+  ],
+
+  playlists: [
+    {
+      title: "For a Consistent Prayer Life",
+      description: "A transformative series on building and maintaining a deep, consistent prayer life by Pastor Joyson Dayalan.",
+      videos: [
+        {
+          title: "For a Consistent Prayer Life (Part 1)",
+          speaker: "Pastor Joyson Dayalan",
+          date: "Sunday Message",
+          youtubeUrl: "https://youtu.be/2c96ZsJ2wTc?si=9_pd5L5vWaMnDdFd"
+        },
+        {
+          title: "For a Consistent Prayer Life… Part - 2",
+          speaker: "Pastor Joyson Dayalan",
+          date: "Sunday Message",
+          youtubeUrl: "https://youtu.be/TvOcJ_5m40c?si=0i0PHUyVVQxiFQ40"
+        }
+      ]
     }
   ],
 
