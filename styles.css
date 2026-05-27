@@ -176,6 +176,14 @@ body::before {
   filter: blur(0);
 }
 
+@media (max-width: 768px) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
 .delay-1 {
   transition-delay: 80ms;
 }
