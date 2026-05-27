@@ -15,10 +15,23 @@ npx serve
 
 ## Edit content
 
-- **Events / sermons / contact**: `data/site-data.js`
+The preferred way to edit content is the Decap CMS admin panel at `/admin/`.
+
+- **Events / sermons / contact / homepage / gallery**: `data/site-data.json`
 - **Styles**: `styles.css`
 - **Behavior (menu, calendar, form)**: `script.js`
-- **Photos**: put images in `assets/gallery/` and list them in `data/site-data.js`
+- **Photos uploaded by CMS**: `assets/uploads/`
+
+## CMS setup
+
+This site uses Decap CMS. The admin config is in `admin/config.yml`, and it is already pointed at the GitHub repo:
+
+```yaml
+repo: Prashanth4522/SGPF-DJ-HALLI-CHURCH
+branch: main
+```
+
+Before using `/admin/` on GitHub Pages, configure a GitHub OAuth provider for Decap CMS. If your provider gives a custom auth URL, add it under `backend` in `admin/config.yml` as `base_url`.
 
 ## Contact form
 

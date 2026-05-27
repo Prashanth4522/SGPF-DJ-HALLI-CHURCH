@@ -1,6 +1,7 @@
 /* SGPF DJ HALLI CHURCH — Main Script */
-(() => {
-  const site = window.SGPF_SITE || {};
+(async () => {
+  const site = await loadSiteData();
+  window.SGPF_SITE = site;
   let lenisInstance = null;
 
   const $ = (sel, root = document) => root.querySelector(sel);
@@ -89,11 +90,44 @@
   const mapsEmbed = $("#mapsEmbed");
   if (mapsEmbed && contact.mapsEmbedUrl) mapsEmbed.src = contact.mapsEmbedUrl;
 
+  const homepage = site.homepage || {};
+  const heroEyebrow = $(".hero-eyebrow");
+  const heroHeading = $(".hero h1");
+  const heroSub = $(".hero-sub");
+  const heroQuote = $(".hero-verse blockquote");
+  const heroReference = $(".hero-verse cite");
+  if (heroEyebrow && homepage.heroEyebrow) heroEyebrow.textContent = homepage.heroEyebrow;
+  if (heroHeading && homepage.heroHeading) heroHeading.textContent = homepage.heroHeading;
+  if (heroSub && homepage.heroTagline) heroSub.textContent = homepage.heroTagline;
+  if (heroQuote && homepage.scriptureQuote) heroQuote.textContent = `"${homepage.scriptureQuote}"`;
+  if (heroReference && homepage.scriptureReference) heroReference.textContent = `— ${homepage.scriptureReference}`;
+
+  const tickerMessages = Array.isArray(homepage.tickerMessages) ? homepage.tickerMessages.filter(Boolean) : [];
+  if (tickerMessages.length) {
+    $$(".marquee-content").forEach(content => {
+      content.innerHTML = tickerMessages.map(message => `<span class="marquee-item">✦ ${escapeHtml(message)}</span>`).join("");
+    });
+  }
+
+  const schedulePoster = site.schedulePoster || {};
+  const weeklyPosterTitle = $("#weeklyPosterTitle");
+  const weeklyPosterImg = $(".poster-modal-img");
+  if (weeklyPosterTitle && schedulePoster.title) weeklyPosterTitle.textContent = schedulePoster.title;
+  if (weeklyPosterImg && schedulePoster.image) {
+    weeklyPosterImg.src = normalizeAssetPath(schedulePoster.image);
+    weeklyPosterImg.alt = schedulePoster.alt || schedulePoster.title || "Weekly schedule poster";
+  }
+  $$("img[data-schedule-poster]").forEach(img => {
+    if (schedulePoster.image) img.src = normalizeAssetPath(schedulePoster.image);
+    img.alt = schedulePoster.alt || "SGPF DJ Halli weekly schedule poster";
+  });
+
   // ── Announcement modal ────────────────────────────────────────
   const fastingModal = $("#fastingPrayerAnnouncement");
   const cancelBtn = $("#announcementCancelBtn");
   const goEventsBtn = $("#announcementGoEventsBtn");
   const shownKey = "sgpfFastingPrayerAnnouncementShown";
+  const announcement = site.announcement || {};
 
   const closeAnnouncement = () => {
     fastingModal?.setAttribute("hidden","");
@@ -104,7 +138,15 @@
     if (lenisInstance) lenisInstance.stop();
   };
 
-  if (fastingModal) {
+  if (fastingModal && announcement.enabled !== false) {
+    const announcementEyebrow = $(".announcement-modal-eyebrow", fastingModal);
+    const announcementTitle = $("#fastingPrayerTitle");
+    const announcementCopy = $(".announcement-modal-copy", fastingModal);
+    if (announcementEyebrow && announcement.eyebrow) announcementEyebrow.textContent = announcement.eyebrow;
+    if (announcementTitle && announcement.title) announcementTitle.textContent = announcement.title;
+    if (announcementCopy && announcement.copy) announcementCopy.textContent = announcement.copy;
+    if (goEventsBtn && announcement.buttonLabel) goEventsBtn.textContent = announcement.buttonLabel;
+
     if (!localStorage.getItem(shownKey)) {
       window.setTimeout(() => { openAnnouncement(); localStorage.setItem(shownKey,"1"); }, 5000);
     }
@@ -114,6 +156,8 @@
       const target = document.querySelector("#events-poster") || document.querySelector("#events");
       if (target) { if (lenisInstance) lenisInstance.scrollTo(target,{offset:-80}); else target.scrollIntoView({behavior:"smooth"}); }
     });
+  } else if (fastingModal) {
+    fastingModal.setAttribute("hidden", "");
   }
 
   // ── Weekly poster modal ───────────────────────────────────────
@@ -150,23 +194,36 @@
   const events = Array.isArray(site.events) ? site.events : [];
   if (eventsList) {
     eventsList.innerHTML = "";
-    if (events.length === 0) {
+    const featuredEvents = events.filter(ev => ev && ev.featured);
+    const renderedEvents = $("#top") && featuredEvents.length ? featuredEvents : events;
+    if (renderedEvents.length === 0) {
       eventsList.innerHTML = `<div class="card"><p class="muted">No upcoming events. Check back soon.</p></div>`;
     } else {
-      events.forEach(ev => {
+      renderedEvents.forEach(ev => {
         const card = document.createElement("article");
-        card.className = "card event reveal";
         const when = formatEventDate(ev.date, ev.time);
+        const poster = ev.posterImage ? normalizeAssetPath(ev.posterImage) : "";
+        card.className = `card event reveal${ev.featured ? " event-featured" : ""}${poster ? " event-has-poster" : ""}`;
         card.innerHTML = `
           <div class="pill"><span class="pill-dot"></span><span>${escapeHtml(when.short)}</span></div>
+          ${poster ? `<img class="event-thumb" src="${escapeHtml(poster)}" alt="${escapeHtml(ev.title || "Event")} poster" loading="lazy" />` : ""}
           <div>
             <p class="event-title">${escapeHtml(ev.title || "Event")}</p>
             <p class="event-meta">${escapeHtml(ev.displayLine || when.long)}</p>
+            ${ev.description ? `<p class="event-description">${escapeHtml(ev.description)}</p>` : ""}
           </div>`;
         eventsList.appendChild(card);
         observer.observe(card);
       });
     }
+  }
+
+  const eventsPosterImg = $(".events-poster-img");
+  if (eventsPosterImg) {
+    const featuredPoster = events.find(ev => ev?.featured && ev.posterImage)?.posterImage;
+    const posterSource = announcement.image || featuredPoster;
+    if (posterSource) eventsPosterImg.src = normalizeAssetPath(posterSource);
+    if (announcement.title) eventsPosterImg.alt = `${announcement.title} event poster`;
   }
 
   // ── Sermons ───────────────────────────────────────────────────
@@ -350,12 +407,39 @@
     if (gallery.length === 0) {
       galleryGrid.innerHTML = `<div class="card"><p class="muted">Photos coming soon.</p></div>`;
     } else {
-      gallery.forEach((g, i) => {
+      const categories = [...new Set(gallery.map(g => g.category).filter(Boolean))];
+      if (categories.length && !$(".gallery-filters")) {
+        const filters = document.createElement("div");
+        filters.className = "gallery-filters";
+        filters.innerHTML = [`<button type="button" class="gallery-filter is-active" data-gallery-filter="all">All</button>`]
+          .concat(categories.map(category => `<button type="button" class="gallery-filter" data-gallery-filter="${escapeHtml(category)}">${escapeHtml(category)}</button>`))
+          .join("");
+        galleryGrid.before(filters);
+        filters.addEventListener("click", e => {
+          const button = e.target.closest("[data-gallery-filter]");
+          if (!button) return;
+          const filter = button.dataset.galleryFilter;
+          $$(".gallery-filter", filters).forEach(btn => btn.classList.toggle("is-active", btn === button));
+          $$(".gimg", galleryGrid).forEach(item => {
+            item.hidden = filter !== "all" && item.dataset.category !== filter;
+          });
+        });
+      }
+
+      gallery.forEach((g) => {
         const wrap = document.createElement("div");
         wrap.className = "gimg reveal";
+        if (g.category) wrap.dataset.category = g.category;
         const img = document.createElement("img");
-        img.src = g.src; img.alt = g.alt || "SGPF church photo"; img.loading = "lazy";
-        wrap.appendChild(img); galleryGrid.appendChild(wrap);
+        img.src = normalizeAssetPath(g.src); img.alt = g.alt || "SGPF church photo"; img.loading = "lazy";
+        wrap.appendChild(img);
+        if (g.caption || g.category || g.year) {
+          const caption = document.createElement("div");
+          caption.className = "gallery-caption";
+          caption.textContent = [g.caption, g.category, g.year].filter(Boolean).join(" • ");
+          wrap.appendChild(caption);
+        }
+        galleryGrid.appendChild(wrap);
         observer.observe(wrap);
       });
     }
@@ -394,6 +478,25 @@
   }
 
   // ═══════ HELPERS ═══════
+  async function loadSiteData() {
+    try {
+      const response = await fetch("/data/site-data.json", { cache: "no-cache" });
+      if (!response.ok) throw new Error(`Could not load site-data.json: ${response.status}`);
+      return await response.json();
+    } catch (error) {
+      console.warn(error);
+      return window.SGPF_SITE || {};
+    }
+  }
+
+  function normalizeAssetPath(path) {
+    const value = String(path || "").trim();
+    if (!value) return "";
+    if (/^(https?:)?\/\//.test(value) || value.startsWith("data:")) return value;
+    if (value.startsWith("./") || value.startsWith("../") || value.startsWith("/")) return value;
+    return `./${value}`;
+  }
+
   function youtubeIdFromUrl(url) {
     try {
       const u = new URL(url);

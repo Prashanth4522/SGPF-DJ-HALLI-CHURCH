@@ -1,0 +1,142 @@
+backend:
+  name: github
+  repo: Prashanth4522/SGPF-DJ-HALLI-CHURCH
+  branch: main
+
+publish_mode: editorial_workflow
+media_folder: "assets/uploads"
+public_folder: "./assets/uploads"
+
+site_url: "https://sgpfdjhalli.com"
+display_url: "https://sgpfdjhalli.com"
+logo_url: "/assets/logo.png"
+
+collections:
+  - name: "settings"
+    label: "Website Content"
+    files:
+      - name: "site_data"
+        label: "Site Data"
+        file: "data/site-data.json"
+        format: "json"
+        fields:
+          - label: "Church Name"
+            name: "churchName"
+            widget: "string"
+          - label: "City Line"
+            name: "cityLine"
+            widget: "string"
+          - label: "Homepage"
+            name: "homepage"
+            widget: "object"
+            fields:
+              - { label: "Hero Eyebrow", name: "heroEyebrow", widget: "string" }
+              - { label: "Hero Heading", name: "heroHeading", widget: "string" }
+              - { label: "Hero Tagline", name: "heroTagline", widget: "text" }
+              - { label: "Scripture Quote", name: "scriptureQuote", widget: "text" }
+              - { label: "Scripture Reference", name: "scriptureReference", widget: "string" }
+              - label: "Scrolling Ticker Messages"
+                name: "tickerMessages"
+                widget: "list"
+                field: { label: "Message", name: "message", widget: "string" }
+          - label: "Announcement Popup"
+            name: "announcement"
+            widget: "object"
+            fields:
+              - { label: "Show Popup", name: "enabled", widget: "boolean", default: true }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Popup Text", name: "copy", widget: "text" }
+              - { label: "Button Label", name: "buttonLabel", widget: "string" }
+              - { label: "Announcement Image", name: "image", widget: "image", required: false }
+          - label: "Weekly Schedule Poster"
+            name: "schedulePoster"
+            widget: "object"
+            fields:
+              - { label: "Modal Title", name: "title", widget: "string" }
+              - { label: "Poster Image", name: "image", widget: "image" }
+              - { label: "Image Alt Text", name: "alt", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Instagram URL", name: "instagramUrl", widget: "string" }
+              - { label: "Instagram Handle", name: "instagramHandle", widget: "string" }
+              - { label: "Short Address", name: "addressShort", widget: "string" }
+              - { label: "Full Address", name: "addressFull", widget: "text" }
+              - { label: "Maps Query", name: "mapsQuery", widget: "string", required: false }
+              - { label: "Maps URL", name: "mapsUrl", widget: "string" }
+              - { label: "Maps Embed URL", name: "mapsEmbedUrl", widget: "string" }
+          - label: "Service Times"
+            name: "serviceTimes"
+            widget: "object"
+            fields:
+              - { label: "Sunday", name: "sunday", widget: "string" }
+              - { label: "Midweek", name: "midweek", widget: "string" }
+          - label: "Social Links"
+            name: "social"
+            widget: "list"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "URL", name: "href", widget: "string" }
+          - { label: "Instagram Reels URL", name: "instagramReelsUrl", widget: "string", required: false }
+          - { label: "Instagram Handle", name: "instagramHandle", widget: "string", required: false }
+          - label: "Pastors"
+            name: "pastors"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string", required: false }
+              - { label: "Bio", name: "bio", widget: "text", required: false }
+              - { label: "Photo", name: "photo", widget: "image", required: false }
+          - label: "Events"
+            name: "events"
+            widget: "list"
+            summary: "{{fields.title}} - {{fields.date}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+              - { label: "Time", name: "time", widget: "string", required: false }
+              - { label: "Location", name: "location", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Display Line", name: "displayLine", widget: "string", required: false }
+              - { label: "Poster Image", name: "posterImage", widget: "image", required: false }
+              - { label: "Featured on Homepage", name: "featured", widget: "boolean", default: false }
+          - label: "Sermons"
+            name: "sermons"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Speaker", name: "speaker", widget: "string" }
+              - { label: "Date Label", name: "date", widget: "string", required: false }
+              - { label: "Series", name: "series", widget: "string", required: false }
+              - { label: "YouTube / Instagram URL", name: "youtubeUrl", widget: "string" }
+              - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
+          - label: "Sermon Series"
+            name: "playlists"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Series Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
+              - label: "Videos"
+                name: "videos"
+                widget: "list"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Speaker", name: "speaker", widget: "string" }
+                  - { label: "Date Label", name: "date", widget: "string", required: false }
+                  - { label: "YouTube / Instagram URL", name: "youtubeUrl", widget: "string" }
+                  - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
+          - label: "Gallery"
+            name: "gallery"
+            widget: "list"
+            summary: "{{fields.caption}}"
+            fields:
+              - { label: "Image", name: "src", widget: "image" }
+              - { label: "Alt Text", name: "alt", widget: "string" }
+              - { label: "Caption", name: "caption", widget: "string", required: false }
+              - { label: "Category / Event Tag", name: "category", widget: "string", required: false }
+              - { label: "Year", name: "year", widget: "string", required: false }
