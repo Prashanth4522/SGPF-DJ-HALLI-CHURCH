@@ -116,7 +116,7 @@
 /* ── Illustration Side ────────────────────────────────────────── */
 .history-illust-side {
   position: relative;
-  background: var(--panel-bg);
+  background: transparent;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -196,9 +196,8 @@
 .history-illust-overlay {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 120% 120% at 50% 50%, transparent 40%, var(--panel-bg) 100%);
-  opacity: 0.3;
+  background: transparent;
+  opacity: 0;
   pointer-events: none;
   z-index: 1;
   mix-blend-mode: soft-light;
