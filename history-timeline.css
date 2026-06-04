@@ -1,0 +1,425 @@
+/* ═══════════════════════════════════════════════════════════════
+   CHURCH HISTORY TIMELINE — Scroll-Animated Parallax Panels
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Section Container ────────────────────────────────────────── */
+.history-timeline {
+  position: relative;
+  padding: 100px 0 40px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--bg) 0%, #f0f3f9 50%, var(--bg) 100%);
+  z-index: 1; /* Establishes stacking context */
+}
+
+#canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2; /* Sits above backgrounds but below text content */
+}
+
+.history-timeline .section-head {
+  text-align: center;
+  margin-bottom: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Vertical Spine (Center Line) ─────────────────────────────── */
+.timeline-spine {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .timeline-spine {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 240px;
+    bottom: 80px;
+    width: 3px;
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 3px;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+
+  .timeline-spine-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(180deg, var(--accent), var(--accent2));
+    border-radius: 3px;
+    transition: height 0.1s linear;
+  }
+}
+
+/* ── Panel Base ───────────────────────────────────────────────── */
+.history-panel {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+
+.history-panel.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.history-panel-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Timeline Node (dot on spine) ─────────────────────────────── */
+@media (min-width: 769px) {
+  .history-panel::before {
+    content: attr(data-panel);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    display: grid;
+    place-items: center;
+    z-index: 5;
+    box-shadow: 0 0 0 6px var(--bg), 0 4px 20px rgba(99, 140, 255, 0.3);
+    opacity: 0;
+    transition: opacity 0.5s var(--ease) 0.3s, transform 0.5s var(--ease) 0.3s;
+  }
+
+  .history-panel.is-visible::before {
+    opacity: 1;
+  }
+}
+
+/* ── Illustration Side ────────────────────────────────────────── */
+.history-illust-side {
+  position: relative;
+  background: var(--panel-bg);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  z-index: 1; /* Sit behind the WebGL canvas layer */
+}
+
+.history-illust-clip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  --splash-main: 130%;
+  --splash-lobe-a: 80%;
+  --splash-lobe-b: 80%;
+  --splash-lobe-c: 72%;
+  --splash-lobe-d: 64%;
+  --splash-drop-a: 36%;
+  --splash-drop-b: 30%;
+  --splash-drop-c: 26%;
+  --splash-edge-opacity: 0;
+  --splash-edge-scale: 1;
+  -webkit-mask-image:
+    radial-gradient(circle at 50% 50%, #000 0 var(--splash-main), transparent calc(var(--splash-main) + 9%)),
+    radial-gradient(circle at 26% 36%, #000 0 var(--splash-lobe-a), transparent calc(var(--splash-lobe-a) + 7%)),
+    radial-gradient(circle at 72% 32%, #000 0 var(--splash-lobe-b), transparent calc(var(--splash-lobe-b) + 7%)),
+    radial-gradient(circle at 34% 72%, #000 0 var(--splash-lobe-c), transparent calc(var(--splash-lobe-c) + 7%)),
+    radial-gradient(circle at 74% 74%, #000 0 var(--splash-lobe-d), transparent calc(var(--splash-lobe-d) + 7%)),
+    radial-gradient(circle at 16% 58%, #000 0 var(--splash-drop-a), transparent calc(var(--splash-drop-a) + 5%)),
+    radial-gradient(circle at 86% 46%, #000 0 var(--splash-drop-b), transparent calc(var(--splash-drop-b) + 5%)),
+    radial-gradient(circle at 58% 12%, #000 0 var(--splash-drop-c), transparent calc(var(--splash-drop-c) + 5%));
+  mask-image:
+    radial-gradient(circle at 50% 50%, #000 0 var(--splash-main), transparent calc(var(--splash-main) + 9%)),
+    radial-gradient(circle at 26% 36%, #000 0 var(--splash-lobe-a), transparent calc(var(--splash-lobe-a) + 7%)),
+    radial-gradient(circle at 72% 32%, #000 0 var(--splash-lobe-b), transparent calc(var(--splash-lobe-b) + 7%)),
+    radial-gradient(circle at 34% 72%, #000 0 var(--splash-lobe-c), transparent calc(var(--splash-lobe-c) + 7%)),
+    radial-gradient(circle at 74% 74%, #000 0 var(--splash-lobe-d), transparent calc(var(--splash-lobe-d) + 7%)),
+    radial-gradient(circle at 16% 58%, #000 0 var(--splash-drop-a), transparent calc(var(--splash-drop-a) + 5%)),
+    radial-gradient(circle at 86% 46%, #000 0 var(--splash-drop-b), transparent calc(var(--splash-drop-b) + 5%)),
+    radial-gradient(circle at 58% 12%, #000 0 var(--splash-drop-c), transparent calc(var(--splash-drop-c) + 5%));
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  will-change: mask-image, -webkit-mask-image;
+}
+
+.history-illust-clip::after {
+  content: '';
+  position: absolute;
+  inset: -12%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 0 28%, rgba(255, 255, 255, 0.78) 31%, transparent 39%),
+    radial-gradient(circle at 28% 38%, rgba(255, 255, 255, 0.58) 0 11%, transparent 18%),
+    radial-gradient(circle at 76% 34%, rgba(255, 255, 255, 0.52) 0 9%, transparent 16%),
+    radial-gradient(circle at 18% 62%, rgba(99, 140, 255, 0.36) 0 7%, transparent 13%),
+    radial-gradient(circle at 86% 48%, rgba(99, 140, 255, 0.34) 0 6%, transparent 12%);
+  mix-blend-mode: screen;
+  opacity: var(--splash-edge-opacity);
+  transform: scale(var(--splash-edge-scale)) rotate(-3deg);
+  transition: opacity 0.32s ease, transform 0.42s ease;
+  z-index: 2;
+}
+
+.history-illust-clip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 1;
+  transform: scale(1.035);
+}
+
+/* Decorative overlay veins / branches pattern */
+.history-illust-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 120% 120% at 50% 50%, transparent 40%, var(--panel-bg) 100%);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: soft-light;
+}
+
+/* ── Text Side ────────────────────────────────────────────────── */
+.history-text-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 64px;
+  position: relative;
+  z-index: 5; /* Keep text side fully interactive and above the canvas layer */
+}
+
+.history-text-content {
+  max-width: 620px; /* Increased from 540px to make content even wider */
+  /* Text slides in from opposite direction */
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.9s var(--ease) 0.2s, transform 0.9s var(--ease) 0.2s;
+}
+
+.history-panel.is-visible .history-text-content {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Flipped panels: text slides from left */
+.history-panel--flipped .history-text-content {
+  transform: translateX(-60px);
+}
+
+.history-panel--flipped.is-visible .history-text-content {
+  transform: translateX(0);
+}
+
+/* ── Flipped Layout (even panels) ─────────────────────────────── */
+.history-panel--flipped .history-panel-inner {
+  direction: rtl;
+}
+
+.history-panel--flipped .history-panel-inner > * {
+  direction: ltr;
+}
+
+/* ── Point Number Badge ───────────────────────────────────────── */
+.history-point-num {
+  display: inline-block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 6px 16px;
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  margin-bottom: 20px;
+  opacity: 0.85;
+}
+
+/* ── Title ────────────────────────────────────────────────────── */
+.history-text-content h3 {
+  font-size: clamp(1.9rem, 3.5vw, 2.7rem); /* Increased size significantly */
+  line-height: 1.15;
+  margin-bottom: 12px;
+  color: var(--fg);
+}
+
+/* ── Date ─────────────────────────────────────────────────────── */
+.history-date {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.history-date::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 2px;
+  background: var(--accent);
+}
+
+/* ── Body Text ────────────────────────────────────────────────── */
+.history-text-content p {
+  font-size: 19.5px; /* Increased from 17.5px */
+  line-height: 1.85;   /* Increased from 1.8 */
+  color: var(--muted);
+}
+
+.history-text-content p em {
+  color: var(--accent);
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Stack panels vertically on mobile
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .history-timeline {
+    padding: 40px 0 10px;
+  }
+
+  .history-timeline .section-head {
+    margin-bottom: 30px;
+  }
+
+  .history-panel-inner {
+    grid-template-columns: 1fr 1.2fr;
+    min-height: auto;
+  }
+
+  .history-illust-side {
+    min-height: 200px;
+  }
+
+  .history-text-side {
+    padding: 20px 16px;
+  }
+
+  .history-text-content {
+    max-width: 100%;
+  }
+
+  .history-text-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+  }
+
+  .history-text-content p {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .history-point-num {
+    font-size: 10px;
+    padding: 3px 8px;
+    margin-bottom: 8px;
+  }
+
+  .history-date {
+    font-size: 11px;
+    margin-bottom: 8px;
+    padding-left: 14px;
+  }
+
+  /* Mobile: slide text up slightly */
+  .history-text-content,
+  .history-panel--flipped .history-text-content {
+    transform: translateY(20px);
+  }
+
+  .history-panel.is-visible .history-text-content,
+  .history-panel--flipped.is-visible .history-text-content {
+    transform: translateY(0);
+  }
+
+  .history-panel {
+    margin-bottom: 16px;
+  }
+
+  .history-panel::before {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .history-panel-inner {
+    grid-template-columns: 1fr 1.1fr;
+  }
+
+  .history-illust-side {
+    min-height: 160px;
+  }
+
+  .history-text-side {
+    padding: 12px 10px;
+  }
+
+  .history-text-content h3 {
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+
+  .history-text-content p {
+    font-size: 11.5px;
+    line-height: 1.45;
+  }
+
+  .history-point-num {
+    font-size: 9px;
+    padding: 2px 6px;
+    margin-bottom: 6px;
+  }
+
+  .history-date {
+    font-size: 10px;
+    margin-bottom: 6px;
+  }
+}
+
+/* ── Subtle Entrance Micro-animation for Point Numbers ─────── */
+@keyframes pointPulse {
+  0% { box-shadow: 0 0 0 0 rgba(99, 140, 255, 0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(99, 140, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(99, 140, 255, 0); }
+}
+
+.history-panel.is-visible .history-point-num {
+  animation: pointPulse 1.5s ease-out 0.5s;
+}
