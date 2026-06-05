@@ -33,8 +33,32 @@ branch: main
 
 Before using `/admin/` on GitHub Pages, configure a GitHub OAuth provider for Decap CMS. If your provider gives a custom auth URL, add it under `backend` in `admin/config.yml` as `base_url`.
 
-## Contact form
+## Prayer requests / contact form to Google Sheets
 
-The contact form uses a **mailto fallback** (it opens the visitor’s email app).  
-If you want a true “send message” feature, we can add a small backend later.
+The contact form can save each message to Google Sheets using a Google Apps Script web app.
+Until a webhook URL is added, the form keeps using the existing mail/Instagram fallback.
+
+### Set up Google Sheets
+
+1. Create a Google Sheet for prayer requests.
+2. In the Sheet, go to **Extensions > Apps Script**.
+3. Replace the default code with the contents of `google-apps-script-prayer-requests.js`.
+4. Click **Deploy > New deployment**.
+5. Choose **Web app**.
+6. Set **Execute as** to **Me**.
+7. Set **Who has access** to **Anyone**.
+8. Click **Deploy** and copy the Web app URL.
+9. Paste that URL into `data/site-data.json`:
+
+```json
+"googleSheetsWebhookUrl": "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"
+```
+
+You can also edit this later from the Decap CMS admin panel under **Contact > Google Sheets Webhook URL**.
+
+## Fallback behavior
+
+If `googleSheetsWebhookUrl` is empty or a submission fails, the site falls back to the existing mail/Instagram contact path.
+
+The contact form uses a **mailto fallback** when the Google Sheets webhook URL is blank.
 

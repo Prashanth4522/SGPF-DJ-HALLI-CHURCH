@@ -449,12 +449,14 @@
   const form = $("#contactForm");
   const formStatus = $("#formStatus");
   if (form) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const name = String(new FormData(form).get("name") || "").trim();
-      const msg = String(new FormData(form).get("message") || "").trim();
-      const phone = String(new FormData(form).get("phone") || "").trim();
-      const prayer = new FormData(form).get("prayer") === "on";
+      const formData = new FormData(form);
+      const name = String(formData.get("name") || "").trim();
+      const msg = String(formData.get("message") || "").trim();
+      const phone = String(formData.get("phone") || "").trim();
+      const prayer = formData.get("prayer") === "on";
+      const website = String(formData.get("website") || "").trim();
 
       const nameHint = $("[data-error-for='name']");
       const msgHint = $("[data-error-for='message']");
@@ -462,6 +464,37 @@
       if (!name) { if (nameHint) nameHint.hidden = false; ok = false; } else { if (nameHint) nameHint.hidden = true; }
       if (!msg) { if (msgHint) msgHint.hidden = false; ok = false; } else { if (msgHint) msgHint.hidden = true; }
       if (!ok) { if (formStatus) formStatus.textContent = "Please fill in the required fields."; return; }
+      if (website) return;
+
+      const webhookUrl = String(contact.googleSheetsWebhookUrl || "").trim();
+      const submitButton = form.querySelector("button[type='submit']");
+      if (webhookUrl) {
+        const payload = new FormData();
+        payload.append("name", name);
+        payload.append("phone", phone);
+        payload.append("message", msg);
+        payload.append("prayer", prayer ? "Yes" : "No");
+        payload.append("page", window.location.href);
+        payload.append("submittedAt", new Date().toISOString());
+
+        try {
+          if (submitButton) submitButton.disabled = true;
+          if (formStatus) formStatus.textContent = "Sending your message...";
+          await fetch(webhookUrl, {
+            method: "POST",
+            mode: "no-cors",
+            body: payload,
+          });
+          form.reset();
+          if (formStatus) formStatus.textContent = "Thank you. Your message has been sent.";
+          return;
+        } catch (error) {
+          console.warn("Google Sheets submission failed", error);
+          if (formStatus) formStatus.textContent = "We could not send it online. Opening another way to contact us...";
+        } finally {
+          if (submitButton) submitButton.disabled = false;
+        }
+      }
 
       const to = contact.email || "";
       const subject = `Message from ${name} – SGPF DJ Halli Church`;

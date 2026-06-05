@@ -36,7 +36,8 @@
     "addressFull": "SGPF DJ Halli Church, DJ Halli, Bengaluru, Karnataka",
     "mapsQuery": "13.0150612,77.6111842",
     "mapsUrl": "https://maps.app.goo.gl/wAtdxaX4xZwhvbKYA",
-    "mapsEmbedUrl": "https://www.google.com/maps?q=13.0150612,77.6111842&z=17&output=embed"
+    "mapsEmbedUrl": "https://www.google.com/maps?q=13.0150612,77.6111842&z=17&output=embed",
+    "googleSheetsWebhookUrl": "https://script.google.com/macros/s/AKfycbzDOL9Y9FhJE2xdNGuYFjCWvHC0TAa0csPucUxncYxL2boKT_9k4O0YTs5TVNrPw474Dw/exec"
   },
   "serviceTimes": {
     "sunday": "10:00 AM",

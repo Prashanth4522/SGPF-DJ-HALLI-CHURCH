@@ -67,6 +67,7 @@ collections:
               - { label: "Maps Query", name: "mapsQuery", widget: "string", required: false }
               - { label: "Maps URL", name: "mapsUrl", widget: "string" }
               - { label: "Maps Embed URL", name: "mapsEmbedUrl", widget: "string" }
+              - { label: "Google Sheets Webhook URL", name: "googleSheetsWebhookUrl", widget: "string", required: false }
           - label: "Service Times"
             name: "serviceTimes"
             widget: "object"
