@@ -50,7 +50,7 @@
     },
     {
       "label": "YouTube",
-      "href": "https://www.youtube.com/@sgpfdjhallibangalore5636"
+      "href": "https://www.youtube.com/@SGPFDJHallichurch"
     },
     {
       "label": "WhatsApp Channel",
@@ -85,50 +85,24 @@
   ],
   "sermons": [
     {
-      "title": "For a Consistent Prayer Life... Part - 3",
+      "title": "Sunday Worship & Sermon",
       "speaker": "Pastor Joyson Dayalan",
-      "date": "Latest Sermon",
-      "series": "For a Consistent Prayer Life",
-      "youtubeUrl": "https://youtu.be/mtAA5XGQBC8?si=xzdmLdVOhJAMAMW-"
-    },
-    {
-      "title": "For a Consistent Prayer Life... Part - 2",
-      "speaker": "Pastor Joyson Dayalan",
-      "date": "Sunday Message",
-      "series": "For a Consistent Prayer Life",
-      "youtubeUrl": "https://youtu.be/TvOcJ_5m40c?si=0i0PHUyVVQxiFQ40"
-    },
-    {
-      "title": "For a Consistent Prayer Life...",
-      "speaker": "Pastor Joyson Dayalan",
-      "date": "Sunday Message",
-      "series": "For a Consistent Prayer Life",
-      "youtubeUrl": "https://youtu.be/2c96ZsJ2wTc?si=9_pd5L5vWaMnDdFd"
+      "date": "Latest Message",
+      "series": "Sunday Messages",
+      "youtubeUrl": "https://youtu.be/BtIeNgFwe24?si=sBeXsl05DJYDdsXo"
     }
   ],
   "playlists": [
     {
-      "title": "For a Consistent Prayer Life",
-      "description": "A transformative series on building and maintaining a deep, consistent prayer life by Pastor Joyson Dayalan.",
+      "title": "Sunday Messages",
+      "description": "Weekly teachings, worship, and spiritual messages from Pastor Joyson Dayalan at SGPF DJ Halli Branch.",
       "thumbnail": "",
       "videos": [
         {
-          "title": "For a Consistent Prayer Life (Part 1)",
+          "title": "Sunday Worship & Sermon",
           "speaker": "Pastor Joyson Dayalan",
-          "date": "Sunday Message",
-          "youtubeUrl": "https://youtu.be/2c96ZsJ2wTc?si=9_pd5L5vWaMnDdFd"
-        },
-        {
-          "title": "For a Consistent Prayer Life... Part - 2",
-          "speaker": "Pastor Joyson Dayalan",
-          "date": "Sunday Message",
-          "youtubeUrl": "https://youtu.be/TvOcJ_5m40c?si=0i0PHUyVVQxiFQ40"
-        },
-        {
-          "title": "For a Consistent Prayer Life... Part - 3",
-          "speaker": "Pastor Joyson Dayalan",
-          "date": "Latest Sermon",
-          "youtubeUrl": "https://youtu.be/mtAA5XGQBC8?si=xzdmLdVOhJAMAMW-"
+          "date": "Latest Message",
+          "youtubeUrl": "https://youtu.be/BtIeNgFwe24?si=sBeXsl05DJYDdsXo"
         }
       ]
     }
