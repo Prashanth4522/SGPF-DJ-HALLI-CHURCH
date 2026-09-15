@@ -602,6 +602,7 @@ body.announcement-open {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
+  max-height: calc(100vh - 72px); /* Prevents the banner from being taller than the screen */
   overflow: hidden;
 }
 
@@ -710,16 +711,17 @@ body.announcement-open {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
-  color: #fff;
+  background: #000000;
+  color: #ffffff;
   border: none;
-  box-shadow: 0 4px 20px rgba(99, 140, 255, 0.3);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(99, 140, 255, 0.45);
-  color: #fff;
+  background: #1a1a1a;
+  box-shadow: 0 8px 24px rgba(99, 140, 255, 0.35); /* slight blue accent */
+  color: #ffffff;
 }
 
 .btn-ghost {
@@ -729,9 +731,9 @@ body.announcement-open {
 }
 
 .btn-ghost:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.04);
   color: var(--fg);
-  border-color: rgba(0, 0, 0, 0.15);
+  border-color: rgba(99, 140, 255, 0.5); /* slight blue accent */
 }
 
 /* ═══════════════════
@@ -768,7 +770,7 @@ body.announcement-open {
 
 h2 {
   margin: 0 0 16px;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   line-height: 1.1;
 }
 
