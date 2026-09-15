@@ -2,8 +2,6 @@ backend:
   name: github
   repo: Prashanth4522/SGPF-DJ-HALLI-CHURCH
   branch: main
-  auth_type: pkce
-  app_id: Ov23li8wnWTNQ4RAmhJq
 
 publish_mode: editorial_workflow
 media_folder: "assets/uploads"
