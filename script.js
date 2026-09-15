@@ -90,23 +90,91 @@
   const mapsEmbed = $("#mapsEmbed");
   if (mapsEmbed && contact.mapsEmbedUrl) mapsEmbed.src = contact.mapsEmbedUrl;
 
-  const homepage = site.homepage || {};
-  const heroEyebrow = $(".hero-eyebrow");
-  const heroHeading = $(".hero h1");
-  const heroSub = $(".hero-sub");
-  const heroQuote = $(".hero-verse blockquote");
-  const heroReference = $(".hero-verse cite");
-  if (heroEyebrow && homepage.heroEyebrow) heroEyebrow.textContent = homepage.heroEyebrow;
-  if (heroHeading && homepage.heroHeading) heroHeading.textContent = homepage.heroHeading;
-  if (heroSub && homepage.heroTagline) heroSub.textContent = homepage.heroTagline;
-  if (heroQuote && homepage.scriptureQuote) heroQuote.textContent = `"${homepage.scriptureQuote}"`;
-  if (heroReference && homepage.scriptureReference) heroReference.textContent = `— ${homepage.scriptureReference}`;
+  // ── Hero Banner Carousel ─────────────────────────────────────
+  const heroBanners = Array.isArray(site.heroBanners) ? site.heroBanners : [];
+  const carouselTrack = $('#heroCarouselTrack');
+  const carouselDots = $('#heroCarouselDots');
 
-  const tickerMessages = Array.isArray(homepage.tickerMessages) ? homepage.tickerMessages.filter(Boolean) : [];
-  if (tickerMessages.length) {
-    $$(".marquee-content").forEach(content => {
-      content.innerHTML = tickerMessages.map(message => `<span class="marquee-item">✦ ${escapeHtml(message)}</span>`).join("");
-    });
+  if (carouselTrack && heroBanners.length) {
+    // Build slides
+    carouselTrack.innerHTML = heroBanners.map((banner, i) => {
+      const imgSrc = normalizeAssetPath(banner.image);
+      const alt = escapeHtml(banner.alt || 'Church banner');
+      const loading = i === 0 ? 'eager' : 'lazy';
+      const imgTag = `<img src="${imgSrc}" alt="${alt}" loading="${loading}" />`;
+      if (banner.link) {
+        return `<div class="hero-carousel-slide"><a href="${escapeHtml(banner.link)}" aria-label="${alt}">${imgTag}</a></div>`;
+      }
+      return `<div class="hero-carousel-slide">${imgTag}</div>`;
+    }).join('');
+
+    // Build dots
+    if (carouselDots && heroBanners.length > 1) {
+      carouselDots.innerHTML = heroBanners.map((_, i) => {
+        const cls = i === 0 ? 'hero-carousel-dot active' : 'hero-carousel-dot';
+        return `<button class="${cls}" type="button" aria-label="Go to slide ${i + 1}" data-slide="${i}"></button>`;
+      }).join('');
+    }
+
+    // Carousel logic
+    let currentSlide = 0;
+    let autoplayTimer = null;
+    const totalSlides = heroBanners.length;
+
+    const goToSlide = (index) => {
+      currentSlide = ((index % totalSlides) + totalSlides) % totalSlides;
+      carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+      if (carouselDots) {
+        $$('.hero-carousel-dot', carouselDots).forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentSlide);
+        });
+      }
+    };
+
+    const startAutoplay = () => {
+      stopAutoplay();
+      if (totalSlides > 1) {
+        autoplayTimer = setInterval(() => goToSlide(currentSlide + 1), 5000);
+      }
+    };
+
+    const stopAutoplay = () => {
+      if (autoplayTimer) { clearInterval(autoplayTimer); autoplayTimer = null; }
+    };
+
+    // Dot click handlers
+    if (carouselDots) {
+      carouselDots.addEventListener('click', (e) => {
+        const dot = e.target.closest('.hero-carousel-dot');
+        if (!dot) return;
+        goToSlide(parseInt(dot.dataset.slide, 10));
+        startAutoplay();
+      });
+    }
+
+    // Pause on hover
+    const carouselSection = $('.hero-carousel');
+    if (carouselSection) {
+      carouselSection.addEventListener('mouseenter', stopAutoplay);
+      carouselSection.addEventListener('mouseleave', startAutoplay);
+    }
+
+    // Touch swipe support
+    let touchStartX = 0;
+    carouselTrack.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      stopAutoplay();
+    }, { passive: true });
+    carouselTrack.addEventListener('touchend', (e) => {
+      const diff = touchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 50) {
+        goToSlide(currentSlide + (diff > 0 ? 1 : -1));
+      }
+      startAutoplay();
+    }, { passive: true });
+
+    // Start autoplay
+    startAutoplay();
   }
 
   const schedulePoster = site.schedulePoster || {};

@@ -1,21 +1,18 @@
 {
   "churchName": "SGPF DJ HALLI CHURCH",
   "cityLine": "DJ Halli, Bengaluru",
-  "homepage": {
-    "heroEyebrow": "Welcome to our community",
-    "heroHeading": "SGPF DJ Halli - Shekinah Gospel Prayer Fellowship",
-    "heroTagline": "A place to worship, grow, and serve. Join us this week for a transformative, spirit-led experience in the heart of Bengaluru.",
-    "scriptureQuote": "How good and pleasant it is when God's people live together in unity!",
-    "scriptureReference": "Psalm 133:1",
-    "tickerMessages": [
-      "Sunday English Service - 6:00 AM",
-      "1st Tamil Service - 7:00 AM",
-      "Tarry Prayer Saturday - 7 PM to 8 PM",
-      "Bible Study Wednesday - 7:30 PM",
-      "Location: DJ Halli, Bengaluru",
-      "All are welcome!"
-    ]
-  },
+  "heroBanners": [
+    {
+      "image": "./assets/uploads/banner-1.jpg",
+      "alt": "SGPF DJ Halli Church - Welcome",
+      "link": "events.html"
+    },
+    {
+      "image": "./assets/uploads/banner-2.jpg",
+      "alt": "SGPF DJ Halli Church - Join Us",
+      "link": "contact.html"
+    }
+  ],
   "announcement": {
     "enabled": true,
     "eyebrow": "Important Announcement",

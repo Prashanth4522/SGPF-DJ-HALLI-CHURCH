@@ -26,19 +26,16 @@ collections:
           - label: "City Line"
             name: "cityLine"
             widget: "string"
-          - label: "Homepage"
-            name: "homepage"
-            widget: "object"
+          - label: "Hero Banners"
+            name: "heroBanners"
+            widget: "list"
+            summary: "{{fields.alt}}"
+            min: 1
+            max: 5
             fields:
-              - { label: "Hero Eyebrow", name: "heroEyebrow", widget: "string" }
-              - { label: "Hero Heading", name: "heroHeading", widget: "string" }
-              - { label: "Hero Tagline", name: "heroTagline", widget: "text" }
-              - { label: "Scripture Quote", name: "scriptureQuote", widget: "text" }
-              - { label: "Scripture Reference", name: "scriptureReference", widget: "string" }
-              - label: "Scrolling Ticker Messages"
-                name: "tickerMessages"
-                widget: "list"
-                field: { label: "Message", name: "message", widget: "string" }
+              - { label: "Banner Image (16:9)", name: "image", widget: "image" }
+              - { label: "Alt Text", name: "alt", widget: "string" }
+              - { label: "Link URL (optional)", name: "link", widget: "string", required: false }
           - label: "Announcement Popup"
             name: "announcement"
             widget: "object"

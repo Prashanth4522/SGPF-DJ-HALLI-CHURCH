@@ -131,7 +131,7 @@
           <a href="sermons">Sermons</a>
           <a href="gallery">Gallery</a>
           <a href="giving">Giving</a>
-          <a href="contact" class="nav-cta">Contact</a>
+          <a href="contact" class="nav-cta">Prayer Request</a>
         </div>
       </nav>
     </div>
@@ -176,51 +176,14 @@
       </div>
     </div>
 
-    <!-- ═══════ HERO ═══════ -->
-    <section id="top" class="hero">
-      <div class="container">
-        <p class="hero-eyebrow">Welcome to our community</p>
-        <h1>SGPF DJ Halli - Shekinah Gospel Prayer Fellowship</h1>
-        <p class="hero-sub">A place to worship, grow, and serve. Join us this week for a transformative, spirit-led
-          experience in the heart of Bengaluru.</p>
-
-        <div class="hero-verse">
-          <blockquote>"How good and pleasant it is when God's people live together in unity!"</blockquote>
-          <cite>— Psalm 133:1</cite>
-        </div>
-
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="schedule.html">See Weekly Schedule</a>
-          <a class="btn btn-ghost" href="#contact">Plan a visit</a>
-          <a class="btn btn-primary" href="#events-poster">Important Announcement</a>
-        </div>
-
-        <div class="marquee-wrap">
-          <div class="marquee-track">
-            <div class="marquee-content">
-              <span class="marquee-item">✦ Sunday English Service — 6:00 AM</span>
-              <span class="marquee-item">✦ 1st Tamil Service — 7:00 AM</span>
-              <span class="marquee-item">✦ Tarry Prayer Saturday — 7 PM to 8 PM</span>
-              <span class="marquee-item">✦ Bible Study Wednesday — 7:30 PM</span>
-              <span class="marquee-item">✦ Location: DJ Halli, Bengaluru</span>
-              <span class="marquee-item">✦ All are welcome!</span>
-            </div>
-            <div class="marquee-content" aria-hidden="true">
-              <span class="marquee-item">✦ Sunday English Service — 6:00 AM</span>
-              <span class="marquee-item">✦ 1st Tamil Service — 7:00 AM</span>
-              <span class="marquee-item">✦ Tarry Prayer Saturday — 7 PM to 8 PM</span>
-              <span class="marquee-item">✦ Bible Study Wednesday — 7:30 PM</span>
-              <span class="marquee-item">✦ Location: DJ Halli, Bengaluru</span>
-              <span class="marquee-item">✦ All are welcome!</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="scroll-hint">
-          <span>Scroll to explore</span>
-          <div class="scroll-arrow"></div>
+    <!-- ═══════ HERO BANNER CAROUSEL ═══════ -->
+    <section id="top" class="hero-carousel" aria-label="Hero banner slideshow">
+      <div class="hero-carousel-viewport">
+        <div class="hero-carousel-track" id="heroCarouselTrack">
+          <!-- Populated dynamically from site-data.json -->
         </div>
       </div>
+      <div class="hero-carousel-dots" id="heroCarouselDots"></div>
     </section>
 
     <!-- ═══════ FEATURED SERMON PLAYER (BENEATH HERO) ═══════ -->
@@ -404,9 +367,9 @@
     <section id="contact" class="section section-alt reveal">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Connect</span>
-          <h2>Contact</h2>
-          <p class="muted">Have a question or need prayer? Reach out to us below.</p>
+          <span class="eyebrow">Prayer Support</span>
+          <h2>Prayer Request</h2>
+          <p class="muted">We believe in the power of prayer. Share your prayer request with us below.</p>
         </div>
         <div class="contact-grid">
           <div class="card">
@@ -432,8 +395,9 @@
           </div>
 
           <form class="card form" id="contactForm" novalidate>
-            <h3>Send a Message</h3>
+            <h3>Send Your Prayer Request</h3>
             <input type="text" name="website" tabindex="-1" autocomplete="off" hidden />
+            <input type="hidden" name="prayer" value="on" />
             <div class="form-row">
               <label for="name">Name</label>
               <input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name" />
@@ -444,18 +408,18 @@
               <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+91 00000 00000" />
             </div>
             <div class="form-row">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" required placeholder="Your message…"></textarea>
-              <p class="field-hint" data-error-for="message" hidden>Please enter a message.</p>
+              <label for="message">Your Prayer Request</label>
+              <textarea id="message" name="message" rows="5" required placeholder="Describe your prayer request…"></textarea>
+              <p class="field-hint" data-error-for="message" hidden>Please enter your prayer request.</p>
             </div>
             <div class="form-row form-row-inline">
               <label class="checkbox">
-                <input id="prayer" name="prayer" type="checkbox" />
-                <span>Prayer request</span>
+                <input id="confidential" name="confidential" type="checkbox" />
+                <span>Keep this request confidential (Pastor &amp; Elders only)</span>
               </label>
             </div>
             <div class="form-actions">
-              <button class="btn btn-primary" type="submit">Send</button>
+              <button class="btn btn-primary" type="submit">Send Prayer Request</button>
               <p class="muted small" id="formStatus" role="status" aria-live="polite"></p>
             </div>
           </form>
@@ -495,7 +459,7 @@
             <li><a href="schedule">Schedule</a></li>
             <li><a href="events">Events</a></li>
             <li><a href="sermons">Sermons</a></li>
-            <li><a href="contact">Contact</a></li>
+            <li><a href="contact">Prayer Request</a></li>
           </ul>
         </div>
         <div>
