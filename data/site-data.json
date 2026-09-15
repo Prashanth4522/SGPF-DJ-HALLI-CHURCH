@@ -16,10 +16,10 @@
   "announcement": {
     "enabled": true,
     "eyebrow": "Important Announcement",
-    "title": "21 Days Fasting Prayer",
-    "copy": "Join us from May 4th to May 24th, 2026. Morning prayer at 11:00 AM and evening prayer at 7:00 PM.",
+    "title": "36th Anniversary Celebration",
+    "copy": "Join us from Sep 21st to Sep 27th, 2026. Morning prayer at 11:00 AM and evening prayer at 7:00 PM.",
     "buttonLabel": "Go to Events",
-    "image": "./assets/21 days fp.png"
+    "image": "/assets/uploads/WhatsApp Image 2026-09-16 at 12.12.49 AM.jpeg"
   },
   "schedulePoster": {
     "title": "Official Weekly Schedule",
@@ -71,12 +71,12 @@
   ],
   "events": [
     {
-      "title": "21 Days Fasting Prayer",
-      "date": "2026-05-04",
+      "title": "36 Anniversary Celebration",
+      "date": "2026-09-21",
       "time": "11:00 AM and 7:00 PM",
       "location": "DJ Halli, Bengaluru",
-      "description": "From May 4 to May 24, 2026, with morning prayer at 11:00 AM and evening prayer at 7:00 PM.",
-      "displayLine": "May 4th-24th, 2026 - Morning 11:00 AM & Evening 7:00 PM - DJ Halli, Bengaluru",
+      "description": "From Sep 21 to Sep 27, 2026, with morning prayer at 11:00 AM and evening prayer at 7:00 PM.",
+      "displayLine": "Sep 21st-27th, 2026 - Morning 11:00 AM & Evening 7:00 PM - DJ Halli, Bengaluru",
       "posterImage": "/assets/uploads/WhatsApp Image 2026-09-16 at 12.12.49 AM.jpeg",
       "featured": true
     }
@@ -88,6 +88,46 @@
       "date": "Latest Message",
       "series": "Sunday Messages",
       "youtubeUrl": "https://youtu.be/BtIeNgFwe24?si=sBeXsl05DJYDdsXo",
+      "thumbnail": ""
+    },
+    {
+      "title": "Prayer That Changes Our Life | Part 1",
+      "speaker": "Joyson D",
+      "date": "Latest",
+      "series": "",
+      "youtubeUrl": "https://youtu.be/VFs_oAmyN9g?si=gS4YIZHieNqix3lt",
+      "thumbnail": ""
+    },
+    {
+      "title": "Prayer That Changes Our Life | Part 2",
+      "speaker": "Joyson D",
+      "date": "Latest",
+      "series": "",
+      "youtubeUrl": "https://youtu.be/UJTCNqW20M4?si=cLyX_-bBSKtz4Van",
+      "thumbnail": ""
+    },
+    {
+      "title": "A Call To Covenant Living",
+      "speaker": "Joyson D",
+      "date": "Latest",
+      "series": "",
+      "youtubeUrl": "https://youtu.be/H3Zx0PR_pJI?si=DBVqxK410AcD-Ey9",
+      "thumbnail": ""
+    },
+    {
+      "title": "Legacy Of Faith | Bible Study Part - 1 |",
+      "speaker": "Joyson Dayalan",
+      "date": "Latest",
+      "series": "",
+      "youtubeUrl": "https://youtu.be/97o9xWyYRP0?si=JV9bF3lQIR26xfG2",
+      "thumbnail": ""
+    },
+    {
+      "title": "When Life Is Hard, God Is the Answer",
+      "speaker": "Joyson D",
+      "date": "Latest",
+      "series": "",
+      "youtubeUrl": "https://youtu.be/zFMY8hIchfI?si=8qGzIIQ1I0lZgtYC",
       "thumbnail": ""
     }
   ],
