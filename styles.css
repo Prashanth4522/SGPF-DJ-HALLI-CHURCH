@@ -602,8 +602,13 @@ body.announcement-open {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: calc(100vh - 72px); /* Prevents the banner from being taller than the screen */
   overflow: hidden;
+}
+
+@media (min-width: 1025px) {
+  .hero-carousel-viewport {
+    max-height: calc(100vh - 72px);
+  }
 }
 
 .hero-carousel-track {
@@ -1941,6 +1946,10 @@ label {
   /* Hero Carousel */
   .hero-carousel {
     margin-top: 60px;
+  }
+
+  .hero-carousel-viewport {
+    aspect-ratio: 1 / 1;
   }
 
   .hero-carousel-dots {
