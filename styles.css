@@ -601,7 +601,8 @@ body.announcement-open {
 .hero-carousel-viewport {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 0;
+  padding-bottom: 56.25%; /* 9/16 = 56.25% — bulletproof 16:9 ratio for all browsers including iOS Safari */
   overflow: hidden;
 }
 
@@ -1950,7 +1951,7 @@ label {
   }
 
   .hero-carousel-viewport {
-    aspect-ratio: 16 / 9;
+    padding-bottom: 56.25%;
   }
 
   .hero-carousel-dots {
