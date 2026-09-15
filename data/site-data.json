@@ -71,7 +71,7 @@
   ],
   "events": [
     {
-      "title": "36 Anniversary Celebration",
+      "title": "36th Anniversary Celebration",
       "date": "2026-09-21",
       "time": "11:00 AM and 7:00 PM",
       "location": "DJ Halli, Bengaluru",
@@ -94,7 +94,7 @@
       "title": "Prayer That Changes Our Life | Part 1",
       "speaker": "Joyson D",
       "date": "Latest",
-      "series": "",
+      "series": "Prayer Series",
       "youtubeUrl": "https://youtu.be/VFs_oAmyN9g?si=gS4YIZHieNqix3lt",
       "thumbnail": ""
     },
@@ -102,7 +102,7 @@
       "title": "Prayer That Changes Our Life | Part 2",
       "speaker": "Joyson D",
       "date": "Latest",
-      "series": "",
+      "series": "Prayer Series",
       "youtubeUrl": "https://youtu.be/UJTCNqW20M4?si=cLyX_-bBSKtz4Van",
       "thumbnail": ""
     },
@@ -110,7 +110,7 @@
       "title": "A Call To Covenant Living",
       "speaker": "Joyson D",
       "date": "Latest",
-      "series": "",
+      "series": "Communion Sunday Sermon",
       "youtubeUrl": "https://youtu.be/H3Zx0PR_pJI?si=DBVqxK410AcD-Ey9",
       "thumbnail": ""
     },
@@ -126,14 +126,14 @@
       "title": "When Life Is Hard, God Is the Answer",
       "speaker": "Joyson D",
       "date": "Latest",
-      "series": "",
+      "series": "Prayer Series",
       "youtubeUrl": "https://youtu.be/zFMY8hIchfI?si=8qGzIIQ1I0lZgtYC",
       "thumbnail": ""
     }
   ],
   "playlists": [
     {
-      "title": "Sunday Messages",
+      "title": "Legacy Of Faith",
       "description": "Weekly teachings, worship, and spiritual messages from Pastor Joyson Dayalan at SGPF DJ Halli Branch.",
       "thumbnail": "",
       "videos": [
@@ -142,6 +142,55 @@
           "speaker": "Pastor Joyson Dayalan",
           "date": "Latest Message",
           "youtubeUrl": "https://youtu.be/BtIeNgFwe24?si=sBeXsl05DJYDdsXo",
+          "thumbnail": ""
+        },
+        {
+          "title": "Legacy Of Faith | Bible Study Part - 1",
+          "speaker": "Pas Joyson D",
+          "date": "September",
+          "youtubeUrl": "https://youtu.be/97o9xWyYRP0?si=L_FBaN0-aaaPYoqB",
+          "thumbnail": ""
+        }
+      ]
+    },
+    {
+      "title": "Communion Sunday Sermon",
+      "description": "Sunday Sermon",
+      "thumbnail": "",
+      "videos": [
+        {
+          "title": "A Call To Covenant Living",
+          "speaker": "Joyson D",
+          "date": "July",
+          "youtubeUrl": "https://youtu.be/H3Zx0PR_pJI?si=c3cXF8IBJcTK8NgS",
+          "thumbnail": ""
+        }
+      ]
+    },
+    {
+      "title": "Prayer Series",
+      "description": "English Sermon on Prayer Series",
+      "thumbnail": "",
+      "videos": [
+        {
+          "title": "Prayer That Changes Our Life | Part 1",
+          "speaker": "Joyson D",
+          "date": "",
+          "youtubeUrl": "https://youtu.be/VFs_oAmyN9g?si=SYIZRYf-kMK7guMl",
+          "thumbnail": ""
+        },
+        {
+          "title": "Prayer That Changes Our Life | Part 2",
+          "speaker": "Joyson D",
+          "date": "June",
+          "youtubeUrl": "https://youtu.be/UJTCNqW20M4?si=pri8RgcpM7BUhGS2",
+          "thumbnail": ""
+        },
+        {
+          "title": "When Life Is Hard, God Is the Answer",
+          "speaker": "Pas Joyson D",
+          "date": "Latest",
+          "youtubeUrl": "https://youtu.be/zFMY8hIchfI?si=IubqfbjwgQAnBc54",
           "thumbnail": ""
         }
       ]
