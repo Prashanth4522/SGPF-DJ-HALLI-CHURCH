@@ -593,7 +593,7 @@ body.announcement-open {
 .hero-carousel {
   position: relative;
   width: 100%;
-  margin-top: 58px; /* account for fixed header */
+  margin-top: 0;
   overflow: hidden;
   background: #0a0e1a;
 }
@@ -602,19 +602,8 @@ body.announcement-open {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
+  max-height: calc(100vh - 64px);
   overflow: hidden;
-}
-
-@media (min-width: 769px) {
-  .hero-carousel-viewport {
-    max-height: calc(78vh - 58px);
-    max-width: 1320px;
-    margin: 0 auto;
-  }
-
-  .hero-carousel-slide img {
-    object-fit: contain;
-  }
 }
 
 .hero-carousel-track {
@@ -1956,7 +1945,7 @@ label {
 
   /* Hero Carousel */
   .hero-carousel {
-    margin-top: 52px;
+    margin-top: 0;
   }
 
   .hero-carousel-dots {
@@ -2188,7 +2177,7 @@ label {
   }
 
   .hero-carousel {
-    margin-top: 52px;
+    margin-top: 0;
   }
 
   .section {
