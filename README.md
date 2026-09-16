@@ -1,4 +1,4 @@
-# SGPF DJ HALLI CHURCH — Website
+# SGPF DJ HALLI CHURCH - Website
 
 Minimal black/white design with a subtle blue gradient accent.
 

@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   CHURCH HISTORY TIMELINE — Curtains.js WebGL Splash Reveal
+   CHURCH HISTORY TIMELINE - Curtains.js WebGL Splash Reveal
    ═══════════════════════════════════════════════════════════════ */
 (() => {
   'use strict';

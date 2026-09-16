@@ -1,4 +1,4 @@
-/* SGPF DJ HALLI CHURCH — Main Script */
+/* SGPF DJ HALLI CHURCH - Main Script */
 (async () => {
   const site = await loadSiteData();
   window.SGPF_SITE = site;
