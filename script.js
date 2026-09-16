@@ -303,7 +303,10 @@
   if (sermonsGrid) {
     sermonsGrid.innerHTML = "";
 
-    sermons.forEach(s => {
+    const limit = parseInt(sermonsGrid.dataset.limit || "0", 10);
+    const displaySermons = limit > 0 ? sermons.slice(0, limit) : sermons;
+
+    displaySermons.forEach(s => {
       const card = document.createElement("article");
       card.className = "card sermon reveal";
 
@@ -337,8 +340,8 @@
       observer.observe(card);
     });
 
-    // Instagram Reels card
-    if (instagramReelsUrl) {
+    // Instagram Reels card (only on full sermons page)
+    if (instagramReelsUrl && limit === 0) {
       const reelsCard = document.createElement("article");
       reelsCard.className = "card sermon sermon-reels";
       reelsCard.innerHTML = `
