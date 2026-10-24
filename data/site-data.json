@@ -36,6 +36,9 @@
     "mapsEmbedUrl": "https://www.google.com/maps?q=13.0150612,77.6111842&z=17&output=embed",
     "googleSheetsWebhookUrl": "https://script.google.com/macros/s/AKfycbzDOL9Y9FhJE2xdNGuYFjCWvHC0TAa0csPucUxncYxL2boKT_9k4O0YTs5TVNrPw474Dw/exec"
   },
+  "askPastor": {
+    "googleSheetsWebhookUrl": "https://script.google.com/macros/s/AKfycbzUavc1EgRJoGvI3scSDL-f3fT8DLlwFD5mgjy2zwzGcFQ6MVSac6XcruvTe11fqVo-iw/exec"
+  },
   "serviceTimes": {
     "sunday": "10:00 AM",
     "midweek": "7:00 PM"
@@ -47,7 +50,7 @@
     },
     {
       "label": "YouTube",
-      "href": "https://www.youtube.com/@SGPFDJHallichurch"
+      "href": "https://www.youtube.com/@SGPF_DJHalli_Church"
     },
     {
       "label": "WhatsApp Channel",
